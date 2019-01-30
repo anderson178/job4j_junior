@@ -9,8 +9,6 @@ public class ArrayCheckTest {
 
         ArrayCheck word = new ArrayCheck();
         boolean result = word.checkWord("Hello", "Hi");
-        int p;
-        boolean ff= true;
         assertThat(result, is(false));
     }
     @Test
