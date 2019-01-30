@@ -1,6 +1,11 @@
 package ru.job4j.test;
 
 public class Test {
-    String name;
-    String test;
+    final String name;
+    final String test;
+
+    public Test(String name, String test) {
+        this.name = name;
+        this.test = test;
+    }
 }
