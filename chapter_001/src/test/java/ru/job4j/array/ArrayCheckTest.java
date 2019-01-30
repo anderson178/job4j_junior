@@ -9,7 +9,7 @@ public class ArrayCheckTest {
 
         ArrayCheck word = new ArrayCheck();
         boolean result = word.checkWord("Hello", "Hi");
-        assertThat(result, is(false));
+        assertThat(result, is(true));
     }
     @Test
     public void whenStartWithPrefixThenFalse() {
