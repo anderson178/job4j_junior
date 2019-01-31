@@ -66,7 +66,7 @@ public class IterratorJaggedArray implements Iterator<Integer> {
      */
     @Override
     public Integer next() throws NoSuchElementException {
-        if (this.getElemnt() != null) {
+        if (hasNext()) {
             Integer rst = this.getElemnt();
             carriage++;
             return rst;
