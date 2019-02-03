@@ -11,41 +11,22 @@ import java.util.NoSuchElementException;
 
 public class IterratorJaggedArray implements Iterator<Integer> {
     int[][] array;
-    int carriage = 0;
-    int countElements = 0;
+    int line = 0, column = 0;
 
     public IterratorJaggedArray(int[][] array) {
         this.array = array;
-        counts();
     }
 
     /**
-     * Сounting the number of elements in the entire array
+     * Method for changes line and column. Imitation move carriage
      */
-    private void counts() {
-        for (int[] mas : this.array) {
-            countElements += mas.length;
+    private void moveCarriage() {
+        if (column < this.array[line].length - 1) {
+            this.column++;
+        } else {
+            this.line++;
+            this.column = 0;
         }
-    }
-
-    /**
-     * Method for getting an element from an array
-     *
-     * @return - element an array
-     */
-    private Integer getElemnt() {
-        Integer rst = null;
-        int count = 0;
-        for (int i = 0; i < this.array.length; i++) {
-            for (int j = 0; j < this.array[i].length; j++) {
-                if (count == carriage) {
-                    return this.array[i][j];
-                } else {
-                    count++;
-                }
-            }
-        }
-        return rst;
     }
 
     /**
@@ -55,7 +36,7 @@ public class IterratorJaggedArray implements Iterator<Integer> {
      */
     @Override
     public boolean hasNext() {
-        return carriage < this.countElements;
+        return line < this.array.length && column < this.array[line].length + 1;
     }
 
     /**
@@ -67,8 +48,8 @@ public class IterratorJaggedArray implements Iterator<Integer> {
     @Override
     public Integer next() throws NoSuchElementException {
         if (hasNext()) {
-            Integer rst = this.getElemnt();
-            carriage++;
+            Integer rst = this.array[line][column];
+            this.moveCarriage();
             return rst;
         } else {
             throw new NoSuchElementException();

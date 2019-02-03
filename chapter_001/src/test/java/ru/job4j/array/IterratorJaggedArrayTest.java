@@ -26,6 +26,21 @@ public class IterratorJaggedArrayTest {
 
     @Test
     public void hasNextNextSequentialInvocation() {
+        /*boolean rst;
+        int number;
+        rst = it.hasNext();
+        number = it.next();
+        rst = it.hasNext();
+        number = it.next();
+        rst = it.hasNext();
+        number = it.next();
+        rst = it.hasNext();
+        number = it.next();
+        rst = it.hasNext();
+        number = it.next();*/
+
+
+
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(1));
         assertThat(it.hasNext(), is(true));
