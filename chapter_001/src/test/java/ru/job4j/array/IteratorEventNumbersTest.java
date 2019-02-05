@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 04.02.2019
+ * @since 05.02.2019
  */
 
 public class IteratorEventNumbersTest {

@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 04.02.2019
+ * @since 05.02.2019
  */
 
 public class IteratorEventNumbers implements Iterator<Integer> {
@@ -15,18 +15,6 @@ public class IteratorEventNumbers implements Iterator<Integer> {
 
     public IteratorEventNumbers(int[] array) {
         this.array = array;
-    }
-
-    /**
-     * Method for changes line and column. Imitation move carriage
-     */
-    private void moveCarriage() {
-        for (int i = this.column; i < this.array.length; i++) {
-            if (this.array[i] % 2 == 0) {
-                this.column = i;
-                break;
-            }
-        }
     }
 
     /**
@@ -39,6 +27,7 @@ public class IteratorEventNumbers implements Iterator<Integer> {
         boolean rst = false;
         for (int i = this.column; i < this.array.length; i++) {
             if (this.array[i] % 2 == 0) {
+                this.column = i;
                 rst = true;
                 break;
             }
@@ -55,11 +44,9 @@ public class IteratorEventNumbers implements Iterator<Integer> {
     @Override
     public Integer next() throws NoSuchElementException {
         if (hasNext()) {
-            this.moveCarriage();
             int rst = this.array[column];
             this.column++;
             return rst;
-
         } else {
             throw new NoSuchElementException();
         }
