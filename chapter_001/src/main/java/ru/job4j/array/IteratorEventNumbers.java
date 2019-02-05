@@ -43,13 +43,12 @@ public class IteratorEventNumbers implements Iterator<Integer> {
      */
     @Override
     public Integer next() throws NoSuchElementException {
-        if (hasNext()) {
-            int rst = this.array[column];
-            this.column++;
-            return rst;
-        } else {
+        if (!hasNext()) {
             throw new NoSuchElementException();
         }
+        int rst = this.array[column];
+        this.column++;
+        return rst;
 
     }
 }
