@@ -31,7 +31,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                return cursor < objects.length;
+                return cursor < position;
             }
 
             @Override
@@ -51,7 +51,7 @@ public class SimpleArray<T> implements Iterable<T> {
      * @throws ArrayIndexOutOfBoundsException - if wayout range the array
      */
     private void checkIndex(int index) throws ArrayIndexOutOfBoundsException {
-        if (this.objects.length < index) {
+        if (this.position < index) {
             throw new ArrayIndexOutOfBoundsException();
         }
     }

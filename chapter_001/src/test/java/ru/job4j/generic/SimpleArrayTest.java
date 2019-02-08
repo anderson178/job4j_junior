@@ -30,6 +30,11 @@ public class SimpleArrayTest {
             assertThat(array.get(i), is(i + 3));
         }
     }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void addTestWhenMethodShouldThrowNoSuchElementException() {
+        array.add(15);
+    }
     @Test
     public void iteratorTest() {
         Iterator<Integer> it = this.array.iterator();
@@ -61,15 +66,33 @@ public class SimpleArrayTest {
         assertThat(array.get(0), is(3));
     }
 
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void getTestWhenMethodShouldThrowArrayIndexOutOfBoundsException() {
+        assertThat(array.get(10), is(3));
+    }
+
+
     @Test
     public void setTestWhenIndex2() {
         array.set(1, 10);
         assertThat(array.get(1), is(10));
     }
 
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void setTestWhenMethodShouldThrowArrayIndexOutOfBoundsException() {
+        array.set(10, 10);
+        assertThat(array.get(1), is(10));
+    }
+
     @Test
     public void removeTestWhenIndexThree() {
         array.remove(3);
+        assertThat(array.get(3), is(7));
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void removeTestWhenMethodShouldThrowArrayIndexOutOfBoundsException() {
+        array.remove(9);
         assertThat(array.get(3), is(7));
     }
 
