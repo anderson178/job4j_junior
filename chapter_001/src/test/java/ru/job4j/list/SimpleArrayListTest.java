@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 13.02.2019
+ * @since 13.2.2019
  */
 
 public class SimpleArrayListTest {
