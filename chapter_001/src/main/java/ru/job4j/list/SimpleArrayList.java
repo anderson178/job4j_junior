@@ -22,29 +22,28 @@ public class SimpleArrayList<E> {
         this.size++;
     }
 
-    private Node<E> lastElement(Node<E> node, int index) {
-        for (int i = 0; i < index - 1; i++) {
-            node = node.next;
-        }
-        return node;
-    }
-
-
     /**
      * Реализовать метод удаления первого элемент в списке.
      */
     public E delete() {
         Node<E> result = this.first;
-        E rst = this.get(size - 1);
-        this.first = null;
-        int sizeIn = this.size - 1;
-        this.size = 0;
-        for (int i = sizeIn; i > 0; i--) {
-            Node<E> temp = lastElement(result, i);
-            this.add(temp.date);
+        E rst = null;
+        if (size != 0) {
+            for (int i = 0; i < size - 1; i++) {
+                if (size == 1) {
+                    this.first = null;
+                }
+                if (result.next.next == null) {
+                    rst = result.next.date;
+                    result.next = null;
+                    break;
+                } else {
+                    result = result.next;
+                }
+            }
+            this.size--;
         }
         return rst;
-
     }
 
     /**

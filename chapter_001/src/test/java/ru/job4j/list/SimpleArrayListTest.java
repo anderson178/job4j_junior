@@ -35,6 +35,8 @@ public class SimpleArrayListTest {
     }
     @Test
     public void whenRemoveThirtElemnt() {
+        SimpleArrayList<Integer> list2 = new SimpleArrayList<>();
+        Integer p = list2.delete();
         assertThat(list.delete(), is(1));
         assertThat(list.get(1), is(3));
         assertThat(list.getSize(), is(3));
