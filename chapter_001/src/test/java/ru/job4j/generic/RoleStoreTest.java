@@ -18,6 +18,7 @@ import static org.hamcrest.Matchers.nullValue;
  */
 
 public class RoleStoreTest {
+
     private Role rFirst = new Role();
     private Role rSecond = new Role();
     private Role rThird = new Role();

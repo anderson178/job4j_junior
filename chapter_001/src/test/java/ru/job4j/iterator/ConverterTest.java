@@ -28,6 +28,7 @@ public class ConverterTest {
         Iterator<Iterator<Integer>> its = Arrays.asList(it1, it2, it3).iterator();
         Converter iteratorOfIterators = new Converter();
         it = iteratorOfIterators.convert(its);
+        int p = 0;
     }
 
     @Test
