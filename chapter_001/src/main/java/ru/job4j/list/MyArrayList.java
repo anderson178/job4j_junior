@@ -50,9 +50,7 @@ public class MyArrayList<T> implements Iterable<T> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                T rst = (T) objects[cursor];
-                this.cursor++;
-                return rst;
+                return (T) objects[cursor++];
             }
         };
     }
