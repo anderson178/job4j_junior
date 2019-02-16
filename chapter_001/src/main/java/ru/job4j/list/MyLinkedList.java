@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 14.02.2019
+ * @since 14.2.2019
  */
 
 public class MyLinkedList<T> implements Iterable<T> {

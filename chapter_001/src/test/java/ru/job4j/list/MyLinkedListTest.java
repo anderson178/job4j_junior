@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 16.02.2019
+ * @since 16.2.2019
  */
 
 public class MyLinkedListTest {
