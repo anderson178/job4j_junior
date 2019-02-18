@@ -8,12 +8,13 @@ import java.util.NoSuchElementException;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 14.2.2019
+ * @since 18.02.2019
  */
 
 public class MyLinkedList<T> implements Iterable<T> {
     private int size;
     private Node<T> tail;
+    private Node<T> previous;
     private Node<T> nodes;
     private int modCount;
 
@@ -26,10 +27,13 @@ public class MyLinkedList<T> implements Iterable<T> {
         if (this.nodes != null) {
             this.tail.next = new Node<>(date);
             this.tail = this.tail.next;
+            this.tail.prev = this.previous;
+            this.previous = tail;
             this.size++;
             this.modCount++;
         } else {
             this.nodes = new Node<>(date);
+            this.previous = this.nodes;
             this.tail = this.nodes;
             this.size++;
             this.modCount++;
@@ -84,34 +88,47 @@ public class MyLinkedList<T> implements Iterable<T> {
         return result.date;
     }
 
+    /**
+     * Method to return size of the structure
+     *
+     * @return
+     */
+    public Integer size() {
+        return this.size;
+    }
+
 
     /**
-     * Реализовать метод удаления первого элемент в списке.
+     * Method to remove elemnt from the list and return this is element
+     * Necassary by remove element from the stack
+     *
+     * @return
      */
-    public T delete() {
+    public T removeForStack() {
         Node<T> result = this.nodes;
         T rst = null;
         if (size != 0) {
-            for (int i = 0; i < size - 1; i++) {
-                if (size == 1) {
-                    this.nodes = null;
-                }
-                if (result.next.next == null) {
-                    rst = result.next.date;
-                    result.next = null;
-                    break;
-                } else {
-                    result = result.next;
-                }
+            if (size == 1) {
+                rst = this.nodes.date;
+                this.nodes = null;
+                this.modCount++;
+            } else {
+                rst = tail.date;
+                tail.prev.next = null;
+                tail = tail.prev;
+                previous = tail;
+                modCount++;
             }
-            this.size--;
         }
+        this.size--;
+
         return rst;
     }
 
     private static class Node<T> {
         T date;
         Node<T> next;
+        Node<T> prev;
 
         Node(T date) {
             this.date = date;
