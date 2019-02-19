@@ -97,6 +97,13 @@ public class MyLinkedList<T> implements Iterable<T> {
         return this.size;
     }
 
+    public T removeFirstElemnt() {
+        T rst = this.nodes.date;
+        Node<T> temp = this.nodes.next;
+        this.nodes = temp;
+
+        return rst;
+    }
 
     /**
      * Method to remove elemnt from the list and return this is element

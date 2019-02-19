@@ -83,8 +83,7 @@ public class MyArrayList<T> implements Iterable<T> {
         if (this.fillPosition == size) {
             this.increaseSizeArray();
         }
-        this.objects[fillPosition] = element;
-        fillPosition++;
+        this.objects[fillPosition++] = element;
         this.modCount++;
     }
 

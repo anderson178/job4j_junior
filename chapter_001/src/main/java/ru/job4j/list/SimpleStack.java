@@ -29,6 +29,11 @@ public class SimpleStack<T> {
         return list.removeForStack();
     }
 
+    public T pollForQueue() {
+        return this.list.removeFirstElemnt();
+
+    }
+
     /**
      * Method to return element by index in list
      *
