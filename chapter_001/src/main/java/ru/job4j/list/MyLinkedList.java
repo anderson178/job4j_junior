@@ -3,6 +3,7 @@ package ru.job4j.list;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 /**
@@ -14,12 +15,11 @@ import java.util.NoSuchElementException;
 public class MyLinkedList<T> implements Iterable<T> {
     private int size;
     private Node<T> tail;
-    private Node<T> previous;
     private Node<T> nodes;
     private int modCount;
 
     /**
-     * Method to add input element in the array
+     * Method to add input element in the tail array
      *
      * @param - element
      */
@@ -27,18 +27,26 @@ public class MyLinkedList<T> implements Iterable<T> {
         if (this.nodes != null) {
             this.tail.next = new Node<>(date);
             this.tail = this.tail.next;
-            this.tail.prev = this.previous;
-            this.previous = tail;
             this.size++;
             this.modCount++;
         } else {
             this.nodes = new Node<>(date);
-            this.previous = this.nodes;
             this.tail = this.nodes;
             this.size++;
             this.modCount++;
         }
+    }
 
+    /**
+     * Method to add input element in the head array
+     * @param date
+     */
+    public void addDeQueue(T date) {
+        Node<T> newLink = new Node<>(date);
+        newLink.next = this.nodes;
+        this.nodes = newLink;
+        this.size++;
+        this.modCount++;
     }
 
     /**
@@ -97,45 +105,16 @@ public class MyLinkedList<T> implements Iterable<T> {
         return this.size;
     }
 
-    public T removeFirstElemnt() {
+    public T remove() {
         T rst = this.nodes.date;
-        Node<T> temp = this.nodes.next;
-        this.nodes = temp;
-
+        this.nodes = this.nodes.next;
         return rst;
     }
 
-    /**
-     * Method to remove elemnt from the list and return this is element
-     * Necassary by remove element from the stack
-     *
-     * @return
-     */
-    public T removeForStack() {
-        Node<T> result = this.nodes;
-        T rst = null;
-        if (size != 0) {
-            if (size == 1) {
-                rst = this.nodes.date;
-                this.nodes = null;
-                this.modCount++;
-            } else {
-                rst = tail.date;
-                tail.prev.next = null;
-                tail = tail.prev;
-                previous = tail;
-                modCount++;
-            }
-        }
-        this.size--;
-
-        return rst;
-    }
 
     private static class Node<T> {
         T date;
         Node<T> next;
-        Node<T> prev;
 
         Node(T date) {
             this.date = date;

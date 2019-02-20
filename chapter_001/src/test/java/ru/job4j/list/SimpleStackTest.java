@@ -24,13 +24,6 @@ public class SimpleStackTest {
     }
 
     @Test
-    public void addTestVelue() {
-        assertThat(stack.getElement(0), is(1));
-        assertThat(stack.getElement(1), is(2));
-        assertThat(stack.getElement(2), is(3));
-    }
-
-    @Test
     public void pollSttack() {
         assertThat(stack.poll(), is(3));
         assertThat(stack.poll(), is(2));

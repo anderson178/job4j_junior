@@ -17,7 +17,7 @@ public class SimpleStack<T> {
      * @return
      */
     public void push(T value) {
-        list.add(value);
+        list.addDeQueue(value);
     }
 
     /**
@@ -26,22 +26,8 @@ public class SimpleStack<T> {
      * @return - element<T>
      */
     public T poll() {
-        return list.removeForStack();
+        return list.remove();
     }
 
-    public T pollForQueue() {
-        return this.list.removeFirstElemnt();
-
-    }
-
-    /**
-     * Method to return element by index in list
-     *
-     * @param index - input index
-     * @return - element<T>
-     */
-    public T getElement(int index) {
-        return list.get(index);
-    }
 
 }
