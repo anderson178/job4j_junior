@@ -25,13 +25,6 @@ public class SimpleQueueTest {
     }
 
     @Test
-    public void addTestVelue() {
-        assertThat(this.queue.getElement(0), is(1));
-        assertThat(this.queue.getElement(1), is(2));
-        assertThat(this.queue.getElement(2), is(3));
-    }
-
-    @Test
     public void pollSttack() {
         assertThat(this.queue.poll(), is(1));
         assertThat(this.queue.poll(), is(2));

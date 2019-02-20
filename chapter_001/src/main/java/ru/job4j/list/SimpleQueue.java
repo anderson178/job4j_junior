@@ -12,14 +12,12 @@ public class SimpleQueue<T> {
 
     public void push(T value) {
         stackTemp.push(value);
-        stackResult.push(stackTemp.poll());
+
     }
 
     public T poll() {
-        return stackResult.pollForQueue();
+        stackResult.push(stackTemp.poll());
+        return stackResult.poll();
     }
 
-    public T getElement(int index) {
-        return this.stackResult.getElement(index);
-    }
 }
