@@ -108,6 +108,8 @@ public class MyLinkedList<T> implements Iterable<T> {
     public T remove() {
         T rst = this.nodes.date;
         this.nodes = this.nodes.next;
+        this.size--;
+        this.modCount++;
         return rst;
     }
 

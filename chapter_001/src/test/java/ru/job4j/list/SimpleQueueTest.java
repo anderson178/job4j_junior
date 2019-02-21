@@ -25,10 +25,20 @@ public class SimpleQueueTest {
     }
 
     @Test
-    public void pollSttack() {
+    public void whenPollSttackNextPushNextpoll() {
+        assertThat(this.queue.poll(), is(1));
+        this.queue.push(4);
+        assertThat(this.queue.poll(), is(2));
+        assertThat(this.queue.poll(), is(3));
+        assertThat(this.queue.poll(), is(4));
+    }
+    @Test
+    public void whenPollSttack() {
         assertThat(this.queue.poll(), is(1));
         assertThat(this.queue.poll(), is(2));
         assertThat(this.queue.poll(), is(3));
     }
+
+
 
 }

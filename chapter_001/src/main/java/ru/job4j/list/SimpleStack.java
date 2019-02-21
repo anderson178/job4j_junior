@@ -28,6 +28,8 @@ public class SimpleStack<T> {
     public T poll() {
         return list.remove();
     }
-
+    public int size() {
+        return this.list.size();
+    }
 
 }
