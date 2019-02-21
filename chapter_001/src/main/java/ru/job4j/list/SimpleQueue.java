@@ -18,12 +18,7 @@ public class SimpleQueue<T> {
      * @param value - input element
      */
     public void push(T value) {
-        if (stackResult.size() == 0) {
-            stackTemp.push(value);
-        } else {
-            this.revers(stackTemp, stackResult, stackResult.size());
-            stackTemp.push(value);
-        }
+        stackTemp.push(value);
     }
 
     /**
@@ -45,7 +40,9 @@ public class SimpleQueue<T> {
      * @return
      */
     public T poll() {
-        this.revers(stackResult, stackTemp, stackTemp.size());
+        if (stackResult.size() == 0) {
+            this.revers(stackResult, stackTemp, stackTemp.size());
+        }
         return stackResult.poll();
     }
 
