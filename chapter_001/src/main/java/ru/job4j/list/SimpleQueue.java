@@ -21,14 +21,22 @@ public class SimpleQueue<T> {
         if (stackResult.size() == 0) {
             stackTemp.push(value);
         } else {
-            int size = stackResult.size();
-            for (int i = 0; i < size; i++) {
-                stackTemp.push(stackResult.poll());
-            }
+            this.revers(stackTemp, stackResult, stackResult.size());
             stackTemp.push(value);
         }
+    }
 
-
+    /**
+     * Method to transfers items from one stack to another
+     *
+     * @param first  - first stack
+     * @param second - secont stack
+     * @param size   - size second stack
+     */
+    private void revers(SimpleStack<T> first, SimpleStack<T> second, int size) {
+        for (int i = 0; i < size; i++) {
+            first.push(second.poll());
+        }
     }
 
     /**
@@ -37,10 +45,7 @@ public class SimpleQueue<T> {
      * @return
      */
     public T poll() {
-        int size = stackTemp.size();
-        for (int i = 0; i < size; i++) {
-            stackResult.push(stackTemp.poll());
-        }
+        this.revers(stackResult, stackTemp, stackTemp.size());
         return stackResult.poll();
     }
 
