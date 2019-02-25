@@ -1,6 +1,7 @@
 package ru.job4j.map;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * @author Денис Мироненко
@@ -29,5 +30,11 @@ public class UserMap {
                 + birthday.get(Calendar.MONTH) + "."
                 + birthday.get(Calendar.DAY_OF_MONTH)
                 + '}';
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
     }
 }
