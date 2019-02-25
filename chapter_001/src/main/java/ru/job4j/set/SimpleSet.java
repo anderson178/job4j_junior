@@ -13,21 +13,33 @@ public class SimpleSet<T> implements Iterable<T> {
     private MyLinkedList<T> array = new MyLinkedList<>();
 
     /**
+     * Methos to cheked is location the element in array
+     *
+     * @param value - input element
+     * @return - if the element is in the array then return true else false
+     */
+    private boolean existUniqueness(T value) {
+        boolean rst = false;
+        for (T temp : array) {
+            if (temp.equals(value)) {
+                rst = true;
+                break;
+            }
+        }
+        return rst;
+    }
+
+    /**
      * Method to add in array if input element not exist in the array
      *
      * @param value - input element
      * @return - true if the element to add alse false
      */
     public boolean add(T value) {
-        boolean rst = true;
-        for (T temp : array) {
-            if (temp.equals(value)) {
-                rst = false;
-                break;
-            }
-        }
-        if (rst) {
+        boolean rst = false;
+        if (!this.existUniqueness(value)) {
             array.add(value);
+            rst = true;
         }
         return rst;
     }
