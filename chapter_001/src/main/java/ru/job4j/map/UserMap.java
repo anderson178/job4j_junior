@@ -34,12 +34,16 @@ public class UserMap {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserMap)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof UserMap)) {
+            return false;
+        }
         UserMap userMap = (UserMap) o;
-        return children == userMap.children &&
-                name.equals(userMap.name) &&
-                birthday.equals(userMap.birthday);
+        return children == userMap.children
+                && name.equals(userMap.name)
+                && birthday.equals(userMap.birthday);
     }
 
     @Override
