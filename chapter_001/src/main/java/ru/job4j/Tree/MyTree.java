@@ -61,7 +61,7 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree<T> {
     }
 
     /**
-     * Еhe method checks if there is such an element, if not, before the parent node adds the child
+     * The method checks if there is such an element, if not, before the parent node adds the child
      * @param parent - the parent node
      * @param child - the child node
      * @return - if elemnet to add thee Tree than to return true else false
@@ -101,6 +101,29 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree<T> {
             }
         }
         return rsl;
+    }
+
+
+    /**
+     * The method check the tree is binary
+     * @return - if is the tree binary than true else false
+     */
+    public boolean isBinary() {
+        boolean rst = true;
+        Queue<Node<T>> data = new LinkedList<>();
+        data.offer(this.root);
+        while (!data.isEmpty()) {
+            Node<T> el = data.poll();
+            if (el.leaves().size() > 2) {
+                rst = false;
+                break;
+            } else {
+                for (Node<T> child : el.leaves()) {
+                    data.offer(child);
+                }
+            }
+        }
+        return rst;
     }
 
 
