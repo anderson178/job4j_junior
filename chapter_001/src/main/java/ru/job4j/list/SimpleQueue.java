@@ -34,7 +34,7 @@ public class SimpleQueue<T> {
         }
     }
 
-    /**
+     /**
      * Method return and remove first elemnt from the second stack
      *
      * @return

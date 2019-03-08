@@ -105,6 +105,14 @@ public class MyLinkedList<T> implements Iterable<T> {
         return this.size;
     }
 
+    public int getModCount() {
+        return this.modCount;
+    }
+
+    public Node<T> getNodes() {
+        return this.nodes;
+    }
+
     public T remove() {
         T rst = this.nodes.date;
         this.nodes = this.nodes.next;
@@ -114,12 +122,20 @@ public class MyLinkedList<T> implements Iterable<T> {
     }
 
 
-    private static class Node<T> {
+    public static class Node<T> {
         T date;
         Node<T> next;
 
         Node(T date) {
             this.date = date;
+        }
+
+        public T getDate() {
+            return date;
+        }
+
+        public Node<T> getNext() {
+            return next;
         }
     }
 }

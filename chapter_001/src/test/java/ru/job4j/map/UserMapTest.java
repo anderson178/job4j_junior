@@ -2,9 +2,7 @@ package ru.job4j.map;
 
 import org.junit.Test;
 
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Денис Мироненко
@@ -23,6 +21,7 @@ public class UserMapTest {
         map.put(this.user2, new Object());
         System.out.println(map.keySet().toString());
     }
+
 
 
 }
