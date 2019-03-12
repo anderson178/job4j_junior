@@ -1,35 +1,66 @@
 package ru.job4j.task;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Analize {
     private boolean check = false;
 
     public Info diff(List<User> previous, List<User> current) {
         Info info = new Info();
-        for (User userC : current) {
-            for (User userP : previous) {
-                if(userC.getId().equals(userP.getId()) && userC.getName().equals(userP.getName())) {
+        List<User> temp = new ArrayList<>(current);
+        List<User> temp2 = new ArrayList<>(current);
+
+        List<User> tempPrev = new ArrayList<>(previous);
+        List<User> tempCurt = new ArrayList<>(current);
+
+        for (int i = 0; i < tempPrev.size(); i++) {
+            this.check = false;
+            for(User userC : tempCurt) {
+                if (tempPrev.get(i).getId().equals(userC.getId())) {
                     this.check = true;
                     break;
                 }
             }
             if (!this.check) {
-                info.setAdded(userC);
-
+                tempPrev.remove(i--);
+                info.deleted++;
             }
-            this.check = false;
-
-
         }
+
+
+            for (User userP : previous) {
+                temp = new ArrayList<>(temp2);
+                for (User userC : temp) {
+                    if (userP.getId().equals(userC.getId()) && userP.getName().equals(userC.getName())) {
+                        temp2.remove(userC);
+                    }
+                    if (userP.getId().equals(userC.getId()) && !userP.getName().equals(userC.getName())) {
+                        temp2.remove(userC);
+                        info.cnanged++;
+                    }
+                }
+            }
+        info.added = temp2.size();
+        int p = 0;
+
 
         return info;
     }
 
-
+    /*private void different(List<User> first, List<User> second, Info info) {
+        for (User userS : second) {
+            for (User userF : first) {
+                if(userS.getId().equals(userF.getId()) && userS.getName().equals(userF.getName())) {
+                    this.check = true;
+                    break;
+                }
+            }
+            if (!this.check) {
+                info.;
+            }
+            this.check = false;
+        }
+    }*/
 
 
     public static class User {
@@ -55,24 +86,8 @@ public class Analize {
     }
 
     public static class Info {
-        private List<User> added = new ArrayList<>();
-        private List<User> changed;
-        private List<User> deleted;
-
-        public void setAdded(User user) {
-            this.added.add(user);
-        }
-
-        public void setChanged(User user) {
-            this.changed.add(user);
-        }
-
-        public void setADleted(User user) {
-            this.deleted.add(user);
-        }
-
-        public List<User> getAdded() {
-            return added;
-        }
+        private int added;
+        private int cnanged;
+        private int deleted;
     }
 }
