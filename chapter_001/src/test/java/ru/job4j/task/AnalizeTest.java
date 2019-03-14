@@ -26,7 +26,6 @@ public class AnalizeTest {
     Analize.User user6 = new Analize.User(111, "Vasily");
     Analize.User user7 = new Analize.User(777, "Anton");
 
-
     List<Analize.User> previous;
     List<Analize.User> current;
 
@@ -43,6 +42,7 @@ public class AnalizeTest {
         current.add(user2);
         current.add(user2);
         current.add(user3);
+        Analize.Info info = new Analize().diff(previous, current);
         assertThat(new Analize().diff(previous, current).getAdded(), is(2));
     }
 

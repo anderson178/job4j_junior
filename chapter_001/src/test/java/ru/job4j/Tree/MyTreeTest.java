@@ -101,10 +101,10 @@ public class MyTreeTest {
     @Test
     public void whenTreeIsBinary() {
         MyTree<Integer> treeTemp = new MyTree<>(1);
-        treeTemp.add(1,2);
-        treeTemp.add(1,3);
-        treeTemp.add(2,4);
-        treeTemp.add(2,5);
-        assertThat(treeTemp.isBinary(), is (true));
+        treeTemp.add(1, 2);
+        treeTemp.add(1, 3);
+        treeTemp.add(2, 4);
+        treeTemp.add(2, 5);
+        assertThat(treeTemp.isBinary(), is(true));
     }
 }
