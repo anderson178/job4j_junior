@@ -21,17 +21,6 @@ public class SimpleHashMapTest {
 
     @Before
     public void setUp() {
-        List<Integer> list = new LinkedList<>();
-
-        //list.o
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(1);
-        Integer p = list.lastIndexOf(1);
-        //Integer p = list.set(0,2);
-
-
         map = new SimpleHashMap<>();
         map.insert(user1, "One");
         map.insert(user2, "Two");
@@ -39,30 +28,11 @@ public class SimpleHashMapTest {
         map.insert(user4, "Four");
         map.insert(user5, "Five");
     }
-
-    @Test
-    public void whenInsertTrue() {
-        SimpleHashMap<UserMap, String> mapTemp = new SimpleHashMap<>();
-        mapTemp.insert(user1, "One");
-        mapTemp.insert(user2, "Two");
-        mapTemp.insert(user3, "Three");
-        mapTemp.insert(user4, "Four");
-        mapTemp.insert(user5, "Five");
-        mapTemp.insert(this.user6, "Sixxx");
-        assertThat(mapTemp.size(), is(5));
-    }
-
-    @Test
+      @Test
     public void whenInsertReplaceValue() {
         map.insert(this.user6, "Sixxx");
         assertThat(this.map.get(this.user6), is("Sixxx"));
         assertThat(this.map.size(), is(6));
-    }
-    @Test
-    public void whenRemoveForKeyTrue() {
-        assertThat(this.map.get(this.user5), is("Five"));
-        assertThat(this.map.delete(this.user5), is(true));
-        assertThat(this.map.get(this.user5), is(nullValue()));
     }
 
 
