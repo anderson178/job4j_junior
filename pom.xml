@@ -14,7 +14,8 @@
     </properties>
 
     <modules>
-        <module>chapter_001</module>       
+        <module>chapter_001</module>
+        <module>stepik</module>
     </modules>
 <dependencies>
     <dependency>
