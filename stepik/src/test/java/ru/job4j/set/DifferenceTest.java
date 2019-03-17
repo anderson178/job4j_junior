@@ -15,6 +15,6 @@ public class DifferenceTest {
         Set<Integer> set1 = new HashSet<>(Set.of(1, 2, 3));
         Set<Integer> set2 = new HashSet<>(Set.of(0, 1, 2));
         Set<Integer> expected = new HashSet<>(Set.of(0, 3));
-        assertThat(Difference.symmetricDifference(set1,set2), is(expected));
+        assertThat(Difference.symmetricDifference(set1, set2), is(expected));
     }
 }
