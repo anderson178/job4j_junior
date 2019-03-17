@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 14.03.2019
+ * @since 17.03.2019
  */
 
 
@@ -24,10 +24,9 @@ public class Analize {
         HashMap<Integer, String> map = new HashMap<>();
         current.forEach(user -> map.put(user.id, user.name));
         for (User user : previous) {
-            String name = map.remove(user.id);
-            if (name == null) {
+            if (!map.containsKey(user.id)) {
                 info.deleted++;
-            } else if (!name.equals(user.name)) {
+            } else if (!map.remove(user.id).equals(user.name)) {
                 info.cnanged++;
             }
         }
