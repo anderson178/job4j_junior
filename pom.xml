@@ -15,6 +15,7 @@
 
     <modules>
         <module>chapter_001</module>
+        <module>chapter_002_IO</module>
         <module>stepik</module>
     </modules>
 <dependencies>
