@@ -12,21 +12,22 @@ import static org.hamcrest.Matchers.is;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 20.03.2019
+ * @since 20.3.2019
  */
 
 public class ContainsTest {
 
     @Test
     public void whenCheckContainsEqualseTrue() {
-        List<Integer> listOne = new ArrayList<>(Arrays.asList(1,2,3,4));
-        List<Integer> listTwo = new ArrayList<>(Arrays.asList(4,3,2,1));
-        assertThat(new Contains().checkContains(listOne,listTwo), is(true));
+        List<Integer> listOne = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        List<Integer> listTwo = new ArrayList<>(Arrays.asList(4, 3, 2, 1));
+        assertThat(new Contains().checkContains(listOne, listTwo), is(true));
     }
+
     @Test
     public void whenCheckContainsEqualseFalse() {
-        List<Integer> listOne = new ArrayList<>(Arrays.asList(1,2,3,4));
-        List<Integer> listTwo = new ArrayList<>(Arrays.asList(4,3,2,7));
-        assertThat(new Contains().checkContains(listOne,listTwo), is(false));
+        List<Integer> listOne = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        List<Integer> listTwo = new ArrayList<>(Arrays.asList(4, 3, 2, 7));
+        assertThat(new Contains().checkContains(listOne, listTwo), is(false));
     }
 }
