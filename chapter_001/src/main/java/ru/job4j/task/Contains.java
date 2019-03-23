@@ -1,8 +1,7 @@
 package ru.job4j.task;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Денис Мироненко
@@ -21,9 +20,10 @@ public class Contains {
      */
     public boolean checkContains(List<Integer> listOne, List<Integer> listTwo) {
         boolean rst = true;
+        Set<Integer> set = new HashSet<>(listOne);
         Map<Integer, Integer> map = new HashMap<>();
         listTwo.forEach(o -> map.put(o, null));
-        for (Integer value : listOne) {
+        for (Integer value : set) {
             if (!map.containsKey(value)) {
                 rst = false;
                 break;

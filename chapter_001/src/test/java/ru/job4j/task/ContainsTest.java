@@ -30,4 +30,10 @@ public class ContainsTest {
         List<Integer> listTwo = new ArrayList<>(Arrays.asList(4, 3, 2, 7));
         assertThat(new Contains().checkContains(listOne, listTwo), is(false));
     }
+    @Test
+    public void whenCheckContainsEqualseTrueIfExistDoubleElemnts() {
+        List<Integer> listOne = new ArrayList<>(Arrays.asList(1, 1, 2, 3));
+        List<Integer> listTwo = new ArrayList<>(Arrays.asList(1, 2, 2, 3));
+        assertThat(new Contains().checkContains(listOne, listTwo), is(true));
+    }
 }
