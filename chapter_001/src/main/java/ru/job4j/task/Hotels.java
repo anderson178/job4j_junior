@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 22.03.2019
+ * @since 22.3.2019
  */
 
 public class Hotels {
