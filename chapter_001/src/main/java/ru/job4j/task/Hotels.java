@@ -1,6 +1,8 @@
 package ru.job4j.task;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author Денис Мироненко
@@ -23,18 +25,12 @@ public class Hotels {
      * Метод изначально сортирует времнный список с рейтингами отелей.
      * Даллее записываем в map отели в тосортрованнам виде, но кол-во звезд записываем
      * исходя из положения рейтинга в списке.
+     *
      * @return
      */
     public List<Integer> starsCounting() {
         Map<Integer, Integer> map = new HashMap<>(listHotels.size());
-        List<Integer> listHotelsTemp = new ArrayList<>();
-        listHotelsTemp.addAll(listHotels);
-        listHotelsTemp.sort(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1.compareTo(o2);
-            }
-        });
+        List<Integer> listHotelsTemp = listHotels.stream().sorted().collect(Collectors.toList());
         for (int i = 0; i < listHotelsTemp.size(); i++) {
             if (i != 0 && i % (listHotelsTemp.size() / starMax) == 0) {
                 this.starMin++;
@@ -46,13 +42,14 @@ public class Hotels {
 
     /**
      * Метод вынимает из map кол-во звезд по каждому отелю
+     *
      * @param map - коллекция с ассоциацией рейтинг <-> кол-во звезд
      * @return - список с кол-вом звезд по каждому отелю
      */
     private List<Integer> getStars(Map<Integer, Integer> map) {
-        List<Integer> rst = new ArrayList<>(listHotels.size());
-        for (int i = 0; i < listHotels.size(); i++) {
-           rst.add(map.get(listHotels.get(i)));
+        List<Integer> rst = new ArrayList<>(this.listHotels.size());
+        for (int i = 0; i < this.listHotels.size(); i++) {
+            rst.add(map.get(this.listHotels.get(i)));
         }
         return rst;
     }
