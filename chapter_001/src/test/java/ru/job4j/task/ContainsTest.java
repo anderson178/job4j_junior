@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 20.3.2019
+ * @since 20.03.2019
  */
 
 public class ContainsTest {
