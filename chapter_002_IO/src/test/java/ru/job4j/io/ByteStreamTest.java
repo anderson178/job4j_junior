@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.is;
 public class ByteStreamTest {
 
     @Test
-    public void whenIsNumberFalse() {
+    public void whenIsNumberFalseFileInputStream() {
         ByteStream bs = new ByteStream();
         try (InputStream in = new ByteArrayInputStream(new FileInputStream(
                 "C://projects//job4j_junior//chapter_002_IO//src//main//resources//byteFiles//67.txt")
@@ -28,12 +28,32 @@ public class ByteStreamTest {
     }
 
     @Test
-    public void whenIsNumberTrue() {
+    public void whenIsNumberTrueFileInputStream() {
         ByteStream bs = new ByteStream();
         try (InputStream in = new ByteArrayInputStream(new FileInputStream(
                 "C://projects//job4j_junior//chapter_002_IO//src//main//resources//byteFiles//10.txt")
                 .readAllBytes())) {
             assertThat(bs.isNumber(in), is(true));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void whenIsNumberTrue() {
+        ByteStream bs = new ByteStream();
+        try (InputStream in = new ByteArrayInputStream("2".getBytes())) {
+            assertThat(bs.isNumber(in), is(true));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void whenIsNumberfalse() {
+        ByteStream bs = new ByteStream();
+        try (InputStream in = new ByteArrayInputStream("33".getBytes())) {
+            assertThat(bs.isNumber(in), is(false));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
