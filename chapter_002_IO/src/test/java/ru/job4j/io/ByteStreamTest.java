@@ -16,33 +16,18 @@ import static org.hamcrest.Matchers.is;
 public class ByteStreamTest {
 
     @Test
-    public void whenIsNumberFalseFileInputStream() {
+    public void whenIsNumberFalse() {
         ByteStream bs = new ByteStream();
-        try (InputStream in = new ByteArrayInputStream(new FileInputStream(
-                "C://projects//job4j_junior//chapter_002_IO//src//main//resources//byteFiles//67.txt")
-                .readAllBytes())) {
+        try (InputStream in = new ByteArrayInputStream("23".getBytes())) {
             assertThat(bs.isNumber(in), is(false));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
-
-    @Test
-    public void whenIsNumberTrueFileInputStream() {
-        ByteStream bs = new ByteStream();
-        try (InputStream in = new ByteArrayInputStream(new FileInputStream(
-                "C://projects//job4j_junior//chapter_002_IO//src//main//resources//byteFiles//10.txt")
-                .readAllBytes())) {
-            assertThat(bs.isNumber(in), is(true));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
     @Test
     public void whenIsNumberTrue() {
         ByteStream bs = new ByteStream();
-        try (InputStream in = new ByteArrayInputStream("2".getBytes())) {
+        try (InputStream in = new ByteArrayInputStream("374".getBytes())) {
             assertThat(bs.isNumber(in), is(true));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -50,9 +35,9 @@ public class ByteStreamTest {
     }
 
     @Test
-    public void whenIsNumberfalse() {
+    public void whenExistSymbolsLineInStream() {
         ByteStream bs = new ByteStream();
-        try (InputStream in = new ByteArrayInputStream("33".getBytes())) {
+        try (InputStream in = new ByteArrayInputStream("2asfdasde22".getBytes())) {
             assertThat(bs.isNumber(in), is(false));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

@@ -2,6 +2,8 @@ package ru.job4j.io;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 /**
  * @author Денис Мироненко
@@ -18,9 +20,18 @@ public class ByteStream {
      * @throws IOException
      */
     public boolean isNumber(InputStream in) throws IOException {
-        byte[] array = in.readAllBytes();
-        return array.length > 0 && array[array.length - 1] % 2 == 0;
+        byte[] streamByte = in.readAllBytes();
+        return this.existStringSymbol(new String(streamByte).toCharArray()).isEmpty()
+                && (streamByte[streamByte.length - 1] % 2 == 0);
     }
 
-
+    /**
+     * метод проверяет элементы массива на предмет появления строкового символа
+     * @param line - массив с символами
+     * @return - optional
+     */
+    private Optional existStringSymbol(char[] line) {
+        return IntStream.range(0, line.length).mapToObj(i-> line[i])
+                .filter(symbol -> !Character.isDigit(symbol)).findAny();
+    }
 }
