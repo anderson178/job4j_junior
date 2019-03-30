@@ -11,14 +11,12 @@ import java.util.stream.IntStream;
  */
 
 public class Hotels {
-    private int countHotels;
-    private List<Integer> listHotels;
+    private List<Integer> hotels;
     private int starMin = 1;
     private int starMax = 5;
 
-    public Hotels(int countHotels, List<Integer> listHotels) {
-        this.countHotels = countHotels;
-        this.listHotels = listHotels;
+    public Hotels(List<Integer> hotels) {
+        this.hotels = hotels;
     }
 
     /**
@@ -29,13 +27,13 @@ public class Hotels {
      * @return
      */
     public List<Integer> starsCounting() {
-        Map<Integer, Integer> map = new HashMap<>(listHotels.size());
-        List<Integer> listHotelsTemp = listHotels.stream().sorted().collect(Collectors.toList());
-        for (int i = 0; i < listHotelsTemp.size(); i++) {
-            if (i != 0 && i % (listHotelsTemp.size() / starMax) == 0) {
+        Map<Integer, Integer> map = new HashMap<>(hotels.size());
+        List<Integer> hotelsSort = hotels.stream().sorted().collect(Collectors.toList());
+        for (int i = 0; i < hotelsSort.size(); i++) {
+            if (i != 0 && i % (hotelsSort.size() / this.starMax) == 0) {
                 this.starMin++;
             }
-            map.put(listHotelsTemp.get(i), this.starMin);
+            map.put(hotelsSort.get(i), this.starMin);
         }
         return this.getStars(map);
     }
@@ -47,9 +45,9 @@ public class Hotels {
      * @return - список с кол-вом звезд по каждому отелю
      */
     private List<Integer> getStars(Map<Integer, Integer> map) {
-        List<Integer> rst = new ArrayList<>(this.listHotels.size());
-        for (int i = 0; i < this.listHotels.size(); i++) {
-            rst.add(map.get(this.listHotels.get(i)));
+        List<Integer> rst = new ArrayList<>(this.hotels.size());
+        for (int i = 0; i < this.hotels.size(); i++) {
+            rst.add(map.get(this.hotels.get(i)));
         }
         return rst;
     }
