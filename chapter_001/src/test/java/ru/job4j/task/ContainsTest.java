@@ -23,6 +23,12 @@ public class ContainsTest {
         List<Integer> listTwo = new ArrayList<>(Arrays.asList(4, 3, 2, 1));
         assertThat(new Contains().checkContains(listOne, listTwo), is(true));
     }
+    @Test
+    public void whenCheckContainsEqualseTrue2() {
+        List<Integer> listOne = new ArrayList<>(Arrays.asList(1, 4, 3, 2));
+        List<Integer> listTwo = new ArrayList<>(Arrays.asList(2, 4, 3, 1));
+        assertThat(new Contains().checkContains(listOne, listTwo), is(true));
+    }
 
     @Test
     public void whenCheckContainsEqualseFalse() {
@@ -31,9 +37,9 @@ public class ContainsTest {
         assertThat(new Contains().checkContains(listOne, listTwo), is(false));
     }
     @Test
-    public void whenCheckContainsEqualseTrueIfExistDoubleElemnts() {
+    public void whenCheckContainsEqualseFalse2() {
         List<Integer> listOne = new ArrayList<>(Arrays.asList(1, 1, 2, 3));
         List<Integer> listTwo = new ArrayList<>(Arrays.asList(1, 2, 2, 3));
-        assertThat(new Contains().checkContains(listOne, listTwo), is(true));
+        assertThat(new Contains().checkContains(listOne, listTwo), is(false));
     }
 }
