@@ -20,7 +20,6 @@ public class Contains {
      * @return - true/false
      */
     public boolean checkContains(List<Integer> first, List<Integer> second) {
-        ArrayList<Integer> tt = new ArrayList<>();
         return first.size() == second.size()
                 && this.compareList(first.stream().sorted().collect(Collectors.toList()),
                         second.stream().sorted().collect(Collectors.toList())).isEmpty();
