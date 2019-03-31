@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import org.junit.Test;
+import ru.job4j.io.search.Search;
 
 import java.io.*;
 import java.util.Scanner;
@@ -15,15 +16,19 @@ import static org.hamcrest.Matchers.is;
  */
 
 public class AbusesWordsTest {
-    private String path = "C://projects//job4j_junior//chapter_002_IO//src//main//resources//abusesWords//";
+    private String path = "";
     private AbusesWords abusesWords = new AbusesWords();
+
 
     @Test
     public void whenAbusesWordsExistsTwoWordsWorldAndDo() {
-        try (InputStream in = new FileInputStream(this.path + "inString1.txt")) {
-            OutputStream out = new FileOutputStream(this.path + "outString1.txt");
+        try (InputStream in = new FileInputStream(getClass().getClassLoader()
+                .getResource("abusesWords/inString1.txt").toString().substring(5))) {
+            OutputStream out = new FileOutputStream(getClass().getClassLoader()
+                    .getResource("abusesWords/outString1.txt").toString().substring(5));
             this.abusesWords.dropAbuses(in, out, new String[]{"world", "do"});
-            Scanner scanner = new Scanner(new File(this.path + "outString1.txt"), "UTF-8");
+            Scanner scanner = new Scanner(new File((getClass().getClassLoader()
+                    .getResource("abusesWords/outString1.txt").toString().substring(5))));
             assertThat(scanner.nextLine(), is("Hello ! Just  it!"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,10 +37,13 @@ public class AbusesWordsTest {
 
     @Test
     public void whenAbusesWordsExistsOneWordBestWithWhiteSpace() {
-        try (InputStream in = new FileInputStream(this.path + "inString2.txt")) {
-            OutputStream out = new FileOutputStream(this.path + "outString2.txt");
+        try (InputStream in = new FileInputStream(getClass().getClassLoader()
+                .getResource("abusesWords/inString2.txt").toString().substring(5))) {
+            OutputStream out = new FileOutputStream(getClass().getClassLoader()
+                    .getResource("abusesWords/outString2.txt").toString().substring(5));
             this.abusesWords.dropAbuses(in, out, new String[]{"best "});
-            Scanner scanner = new Scanner(new File(this.path + "outString2.txt"), "UTF-8");
+            Scanner scanner = new Scanner(new File(getClass().getClassLoader()
+                    .getResource("abusesWords/outString2.txt").toString().substring(5)));
             assertThat(scanner.nextLine(), is("today is the day"));
         } catch (IOException e) {
             e.printStackTrace();

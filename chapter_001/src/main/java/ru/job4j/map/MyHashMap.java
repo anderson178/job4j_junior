@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 05.03.2019
+ * @since 05.3.2019
  */
 
 public class MyHashMap<K, V> implements Iterable<MyHashMap.Node> {

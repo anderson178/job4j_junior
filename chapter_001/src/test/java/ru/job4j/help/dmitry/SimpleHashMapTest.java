@@ -28,12 +28,6 @@ public class SimpleHashMapTest {
         map.insert(user4, "Four");
         map.insert(user5, "Five");
     }
-      @Test
-    public void whenInsertReplaceValue() {
-        map.insert(this.user6, "Sixxx");
-        assertThat(this.map.get(this.user6), is("Sixxx"));
-        assertThat(this.map.size(), is(6));
-    }
 
 
 }
