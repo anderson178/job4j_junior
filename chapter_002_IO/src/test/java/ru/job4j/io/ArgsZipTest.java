@@ -26,25 +26,25 @@ public class ArgsZipTest {
     @Test
     public void tearArchive() throws IOException {
 
-        String pathFiles = System.getProperty("java.io.tmpdir") + "chapter_002_IO";
+        String pathFiles = System.getProperty("java.io.tmpdir") + SR + "chapter_002_IO";
         ArgsZip.clearDir(pathFiles);
         File rootFiles = new File(pathFiles);
         rootFiles.mkdir();
-        String pathArch = System.getProperty("java.io.tmpdir") + "archive";
+        String pathArch = System.getProperty("java.io.tmpdir") + SR + "archive";
         ArgsZip.clearDir(pathArch);
         File rootArch = new File(pathArch);
         rootArch.mkdir();
-        File first = new File(rootFiles + SR + "123.png");
+        File first = new File(rootFiles, "123.png");
         first.createNewFile();
-        File second = new File(rootFiles + SR + "456.txt");
+        File second = new File(rootFiles, "456.txt");
         second.createNewFile();
-        File third = new File(rootFiles + SR + "789.jpg");
+        File third = new File(rootFiles, "789.jpg");
         third.createNewFile();
-        File fourth = new File(rootFiles + SR + "003.txt");
+        File fourth = new File(rootFiles, "003.txt");
         fourth.createNewFile();
-        File rootIn = new File(rootFiles + SR + "folder");
+        File rootIn = new File(rootFiles, "folder");
         rootIn.mkdir();
-        File fifth = new File(rootIn + SR + "222.png");
+        File fifth = new File(rootIn, "222.png");
         fifth.createNewFile();
         String[] args = new String[]{"-d", pathFiles + SR, "-e", "*.txt", "-o", pathArch + SR + "project.zip"};
         ArgsZip arch = new ArgsZip(args);

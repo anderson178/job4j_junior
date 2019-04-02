@@ -61,17 +61,19 @@ public class Search {
      * @param pathDirectoy - путь к директории
      */
     public static void clearDir(String pathDirectoy) {
-        LinkedList<File> directorys = new LinkedList<>();
-        directorys.offer(new File(pathDirectoy));
-        while (!directorys.isEmpty()) {
-            File file = directorys.poll();
-            File[] dir = file.listFiles();
-            if (file.isDirectory() && dir.length != 0) {
-                for (File directory : dir) {
-                    directorys.offer(directory);
+        if (new File(pathDirectoy).exists()) {
+            LinkedList<File> directorys = new LinkedList<>();
+            directorys.offer(new File(pathDirectoy));
+            while (!directorys.isEmpty()) {
+                File file = directorys.poll();
+                File[] dir = file.listFiles();
+                if (file.isDirectory() && dir.length != 0) {
+                    for (File directory : dir) {
+                        directorys.offer(directory);
+                    }
+                } else {
+                    file.delete();
                 }
-            } else {
-                file.delete();
             }
         }
     }

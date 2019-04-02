@@ -46,8 +46,8 @@ public class ArgsZip {
                         out.putNextEntry(new ZipEntry(file.getAbsolutePath().substring(this.pathDirectoy.length()) + SR));
                     }
                 } else if (!execude.equals(file.getPath().split("\\.")[1])) {
-                    out.putNextEntry(new ZipEntry(file.getAbsolutePath().substring(this.pathDirectoy.length())));
-                } else if (!(file.getParent() + SR).equals(pathDirectoy)) {
+                    out.putNextEntry(new ZipEntry(file.getAbsolutePath().substring(this.pathDirectoy.length() + 1)));
+                } else if (!(file.getParent()).equals(pathDirectoy)) {
                     out.putNextEntry(new ZipEntry(file.getParent().substring(this.pathDirectoy.length()) + SR));
                 }
             }
@@ -62,7 +62,7 @@ public class ArgsZip {
     private void parsingArgs() {
         for (int i = 0; i < args.length - 1; i = i + 2) {
             if (args[i].equals("-d")) {
-                this.pathDirectoy = args[i + 1];
+                this.pathDirectoy = new File(args[i + 1]).getAbsolutePath();
             } else if (args[i].equals("-e")) {
                 this.execude = args[i + 1].split("\\.")[1];
             } else if (args[i].equals("-o")) {

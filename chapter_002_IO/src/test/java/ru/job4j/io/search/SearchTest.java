@@ -23,7 +23,7 @@ public class SearchTest {
 
     @Test
     public void whenTwoFilesExtentionJpg() throws IOException {
-        String path = System.getProperty("java.io.tmpdir") + "chapter_002_IO" + SR;
+        String path = System.getProperty("java.io.tmpdir") + SR + "chapter_002_IO" + SR;
         Search.clearDir(path);
         File root = new File(path);
         File inRoot = new File(root.getPath());
@@ -37,12 +37,13 @@ public class SearchTest {
         fileTwo.createNewFile();
         fileThree.createNewFile();
         fileFour.createNewFile();
-        assertThat(new Search().files(path, new String[]{"jpg"}), is(new ArrayList<>(Arrays.asList(fileOne, fileThree))));
+        assertThat(new Search().files(path, new String[]{"jpg"})
+                .containsAll(new ArrayList<>(Arrays.asList(fileOne, fileThree))), is(true));
     }
 
     @Test
     public void whenOneFileExtentionXlsx() throws IOException {
-        String path = System.getProperty("java.io.tmpdir") + "chapter_002_IO" + SR;
+        String path = System.getProperty("java.io.tmpdir") + SR + "chapter_002_IO" + SR;
         Search.clearDir(path);
         File root = new File(path);
         File inRoot = new File(root.getPath());
@@ -56,12 +57,13 @@ public class SearchTest {
         fileTwo.createNewFile();
         fileThree.createNewFile();
         fileFour.createNewFile();
-        assertThat(new Search().files(path, new String[]{"xlsx"}), is(new ArrayList<>(Arrays.asList(fileFour))));
+        assertThat(new Search().files(path, new String[]{"xlsx"}).containsAll(new ArrayList<>(Arrays.asList(fileFour))),
+                is(true));
     }
 
     @Test
     public void whenThreeFilesExtentionJpgAndTxt() throws IOException {
-        String path = System.getProperty("java.io.tmpdir") + "chapter_002_IO" + SR;
+        String path = System.getProperty("java.io.tmpdir") + SR + "chapter_002_IO" + SR;
         Search.clearDir(path);
         File root = new File(path);
         File inRoot = new File(root.getPath());
@@ -75,8 +77,8 @@ public class SearchTest {
         fileTwo.createNewFile();
         fileThree.createNewFile();
         fileFour.createNewFile();
-        assertThat(new Search().files(path, new String[]{"jpg", "txt"}), is(
-                new ArrayList<>(Arrays.asList(fileOne, fileTwo, fileThree))));
+        assertThat(new Search().files(path, new String[]{"jpg", "txt"}).
+                containsAll(new ArrayList<>(Arrays.asList(fileOne, fileTwo, fileThree))), is(true));
     }
 
 
