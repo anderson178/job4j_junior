@@ -8,7 +8,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 02.04.2019
+ * @since 02.4.2019
  */
 
 public class ArgsZip {
