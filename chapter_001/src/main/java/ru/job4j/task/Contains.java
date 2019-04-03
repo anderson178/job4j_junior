@@ -20,21 +20,32 @@ public class Contains {
      * @return - true/false
      */
     public boolean checkContains(List<Integer> first, List<Integer> second) {
-        return first.size() == second.size()
-                && this.compareList(first.stream().sorted().collect(Collectors.toList()),
-                        second.stream().sorted().collect(Collectors.toList())).isEmpty();
-
+        return first.size() == second.size() && checkMap(first, second).size() == 0;
     }
 
     /**
-     * Метод сранивает два списка по-индексно. Если элементы будут равны друг другу то вернет пустой OptionalInt
-     * иначе с первым
+     * Метод записывает в мапу значения из первой коллекции, затем удаляет из мапы значения из второй коллекции
      *
-     * @param firstSort  - первый отсортированный список
-     * @param secondSort - второй отсортированный список
-     * @return - OptionalInt
+     * @param first
+     * @param second
+     * @return
      */
-    private OptionalInt compareList(List<Integer> firstSort, List<Integer> secondSort) {
-        return IntStream.range(0, firstSort.size()).filter(i -> !firstSort.get(i).equals(secondSort.get(i))).findFirst();
+    private Map checkMap(List<Integer> first, List<Integer> second) {
+        Map<Integer, Integer> map = new HashMap<>();
+        first.forEach(number -> {
+            if (map.get(number) != null) {
+                map.put(number, map.get(number) + 1);
+            } else {
+                map.put(number, 1);
+            }
+        });
+        second.forEach(number -> {
+            if (map.get(number) != null && map.get(number) > 1) {
+                map.put(number, map.get(number) - 1);
+            } else {
+                map.remove(number);
+            }
+        });
+        return map;
     }
 }
