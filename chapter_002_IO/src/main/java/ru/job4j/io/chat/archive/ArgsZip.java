@@ -1,4 +1,4 @@
-package ru.job4j.io;
+package ru.job4j.io.chat.archive;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -60,15 +60,9 @@ public class ArgsZip {
      * Метод парсит вхоядщий строковый массив
      */
     private void parsingArgs() {
-        for (int i = 0; i < args.length - 1; i = i + 2) {
-            if (args[i].equals("-d")) {
-                this.pathDirectoy = new File(args[i + 1]).getAbsolutePath();
-            } else if (args[i].equals("-e")) {
-                this.execude = args[i + 1].split("\\.")[1];
-            } else if (args[i].equals("-o")) {
-                this.nameOutFile = args[i + 1];
-            }
-        }
+      this.pathDirectoy = new ParsLine(this.args).getPathDirectoy();
+      this.execude = new ParsLine(this.args).getExecude();
+      this.nameOutFile = new ParsLine(this.args).getNameOutFile();
     }
 
     /**
