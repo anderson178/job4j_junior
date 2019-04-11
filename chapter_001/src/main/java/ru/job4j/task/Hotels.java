@@ -45,11 +45,7 @@ public class Hotels {
      * @return - список с кол-вом звезд по каждому отелю
      */
     private List<Integer> getStars(Map<Integer, Integer> map) {
-        List<Integer> rst = new ArrayList<>(this.hotels.size());
-        for (int i = 0; i < this.hotels.size(); i++) {
-            rst.add(map.get(this.hotels.get(i)));
-        }
-        return rst;
+       return IntStream.range(0, this.hotels.size()).mapToObj(i -> map.get(this.hotels.get(i))).collect(Collectors.toList());
     }
 
 }
