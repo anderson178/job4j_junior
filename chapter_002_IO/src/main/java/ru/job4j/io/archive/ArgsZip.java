@@ -1,4 +1,4 @@
-package ru.job4j.io.chat.archive;
+package ru.job4j.io.archive;
 
 import java.io.*;
 import java.util.LinkedList;
