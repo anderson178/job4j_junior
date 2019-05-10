@@ -17,6 +17,7 @@
         <module>chapter_001</module>
         <module>chapter_002_IO</module>
         <module>stepik</module>
+        <module>chapter_003_sql_jdbc</module>
     </modules>
 <dependencies>
     <dependency>
