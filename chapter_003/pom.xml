@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>chapter_003_sql_jdbc</artifactId>
+    <artifactId>chapter_003</artifactId>
 
 
 </project>
