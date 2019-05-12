@@ -17,7 +17,6 @@
         <module>chapter_001</module>
         <module>chapter_002_IO</module>
         <module>stepik</module>
-        <module>chapter_003_sql</module>
         <module>chapter_003</module>
     </modules>
 <dependencies>
@@ -31,6 +30,18 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>1.7.26</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.11.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.11.1</version>
     </dependency>
     <dependency>
         <groupId>org.hamcrest</groupId>

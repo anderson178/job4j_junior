@@ -24,7 +24,7 @@ public class AnalysisLogTest {
     private static final String LOG = "log.txt";
     private static final String TARGET = "unavailable.txt";
 
-    @Test
+    /*@Test
     public void whenTwoIntervals() throws IOException {
         AnalysisLog analysisLog = new AnalysisLog();
         analysisLog.removeDir(PATHDIR);
@@ -82,6 +82,6 @@ public class AnalysisLogTest {
         analysisLog.unavailable(PATHDIR + SR + LOG, PATHDIR + SR + TARGET);
         List<String> expected = new ArrayList<>(Arrays.asList("10:57:01:10:59:01", "11:01:02:11:01:02"));
         assertThat(analysisLog.readFile(PATHDIR + SR + TARGET), is(expected));
-    }
+    }*/
 
 }
