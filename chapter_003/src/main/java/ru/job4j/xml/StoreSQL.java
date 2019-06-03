@@ -3,9 +3,12 @@ package ru.job4j.xml;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.job4j.xml.models.Field;
 
 import java.io.File;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class StoreSQL {
@@ -46,7 +49,7 @@ public class StoreSQL {
                 query = "delete from entry";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                     preparedStatement.executeUpdate();
-                    printDB();
+                    //printDB();
                 }
             }
         } catch (SQLException e) {
@@ -74,12 +77,14 @@ public class StoreSQL {
         }
     }
 
-    public void printDB() {
+    public List<Field> getAllValues() {
         String query = "select * from entry";
+        List<Field> result = new ArrayList<>();
         try (ResultSet resultSet = connection.prepareStatement(query).executeQuery()) {
             while (resultSet.next()) {
                 try {
-                    System.out.println(resultSet.getString("name"));
+                    //System.out.println(resultSet.getString("name"));
+                    result.add(new Field(resultSet.getString("name")));
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -87,12 +92,13 @@ public class StoreSQL {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return result;
     }
 
     public static void main(String[] args) {
         StoreSQL storeSQL = new StoreSQL(new Config());
         storeSQL.init();
         storeSQL.generate(100);
-        storeSQL.printDB();
+       // storeSQL.printDB();
     }
 }
