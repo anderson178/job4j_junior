@@ -22,12 +22,11 @@ public class StoreSQL {
 
     public void init() {
         this.config.init();
-
         if (!new File(config.getProperty("url")).exists()) {
             try {
                 connection = DriverManager.getConnection(this.config.getProperty("url"));
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOG.error(e.getMessage(), e);
             }
         }
     }
@@ -37,8 +36,7 @@ public class StoreSQL {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
-            //LOG.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
     }
 
@@ -49,7 +47,6 @@ public class StoreSQL {
                 query = "delete from entry";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                     preparedStatement.executeUpdate();
-                    //printDB();
                 }
             }
         } catch (SQLException e) {
@@ -73,7 +70,7 @@ public class StoreSQL {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())) {
             preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
     }
 
@@ -83,14 +80,13 @@ public class StoreSQL {
         try (ResultSet resultSet = connection.prepareStatement(query).executeQuery()) {
             while (resultSet.next()) {
                 try {
-                    //System.out.println(resultSet.getString("name"));
                     result.add(new Field(resultSet.getString("name")));
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    LOG.error(e.getMessage(), e);
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
         return result;
     }
