@@ -14,17 +14,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 public class StoreXML {
     final File target;
-    static final String SR = File.separator;
+
 
 
     public void save(List<Field> list) {
-        this.checkFile();
+
         JAXBContext jaxbContext = null;
         try {
             jaxbContext = JAXBContext.newInstance(User.class);
@@ -40,34 +41,23 @@ public class StoreXML {
         }
     }
 
-    public void checkFile() {
-        if (this.target.exists()) {
-            target.delete();
-            try {
-                target.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            try {
-                target.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+    public static void clearDir(String pathDirectoy) {
+        LinkedList<File> directorys = new LinkedList<>();
+        directorys.offer(new File(pathDirectoy));
+        while (!directorys.isEmpty()) {
+            File file = directorys.poll();
+            File[] dir = file.listFiles();
+            if (file.isDirectory() && dir.length != 0) {
+                for (File directory : dir) {
+                    directorys.offer(directory);
+                }
+            } else {
+                file.delete();
             }
         }
     }
 
-    public static void main(String[] args) {
-        Config config = new Config();
-        config.init();
-        StoreSQL storeSQL = new StoreSQL(config);
-        storeSQL.init();
-        storeSQL.generate(100);
-        String pathFiles = System.getProperty("java.io.tmpdir") + SR + "target";
-        StoreXML storeXML = new StoreXML(new File(pathFiles));
-        storeXML.save(storeSQL.getAllValues());
 
-    }
 
 
 }

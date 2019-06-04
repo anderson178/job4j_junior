@@ -65,9 +65,9 @@ public class StoreSQL {
         sql.append("INSERT INTO entry (name) VALUES ");
         for (int i = 0; i < size; i++) {
             if (i < size - 1) {
-                sql.append("('I am " + i + "'),");
+                sql.append("('" + i + "'),");
             } else {
-                sql.append("('I am " + i + "');");
+                sql.append("('" + i + "');");
             }
         }
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())) {
@@ -95,10 +95,5 @@ public class StoreSQL {
         return result;
     }
 
-    public static void main(String[] args) {
-        StoreSQL storeSQL = new StoreSQL(new Config());
-        storeSQL.init();
-        storeSQL.generate(100);
-       // storeSQL.printDB();
-    }
+
 }
