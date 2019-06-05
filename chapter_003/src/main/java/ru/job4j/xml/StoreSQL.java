@@ -10,6 +10,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 05.06.2019
+ */
 
 public class StoreSQL {
     public static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
@@ -20,6 +25,9 @@ public class StoreSQL {
         this.config = config;
     }
 
+    /**
+     * Метод создает базу, соединение с ней и чистит ее
+     */
     public void init() {
         this.config.init();
         if (!new File(config.getProperty("url")).exists()) {
@@ -29,8 +37,13 @@ public class StoreSQL {
                 LOG.error(e.getMessage(), e);
             }
         }
+        this.createTable();
+        this.clearTable();
     }
 
+    /**
+     * Метод создает базу если она не существует
+     */
     private void createTable() {
         String sql = "CREATE TABLE if not exists entry (name varchar(255))";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -40,6 +53,9 @@ public class StoreSQL {
         }
     }
 
+    /**
+     * Метод удаляет данные из таблицы если в ней что-то есть
+     */
     private void clearTable() {
         String query = "select * from entry";
         try (ResultSet select = connection.prepareStatement(query).executeQuery()) {
@@ -52,9 +68,13 @@ public class StoreSQL {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
+    /**
+     * Метод создает в таблице новые записи
+     *
+     * @param size - количество записей в таблице
+     */
     public void generate(int size) {
         this.createTable();
         this.clearTable();
@@ -74,6 +94,11 @@ public class StoreSQL {
         }
     }
 
+    /**
+     * Метод запрашивает из таблицы все значения записей поля name
+     *
+     * @return - список с значениями полей
+     */
     public List<Field> getAllValues() {
         String query = "select * from entry";
         List<Field> result = new ArrayList<>();
@@ -90,6 +115,5 @@ public class StoreSQL {
         }
         return result;
     }
-
 
 }

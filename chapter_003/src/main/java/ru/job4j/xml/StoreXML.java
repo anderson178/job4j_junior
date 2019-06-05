@@ -1,7 +1,7 @@
 package ru.job4j.xml;
 
+
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.job4j.xml.models.Field;
@@ -14,12 +14,22 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
-@Data
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 05.06.2019
+ */
+
 @AllArgsConstructor
 public class StoreXML {
+    private static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
     final File target;
-    public static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
 
+    /**
+     * Метод сохраняет список с field в файл типа xml
+     *
+     * @param list - список значений field
+     */
     public void save(List<Field> list) {
         JAXBContext jaxbContext = null;
         try {
@@ -35,6 +45,11 @@ public class StoreXML {
         }
     }
 
+    /**
+     * Метод удаляет папку и ее содержимое
+     *
+     * @param pathDirectoy
+     */
     public static void clearDir(String pathDirectoy) {
         LinkedList<File> directorys = new LinkedList<>();
         directorys.offer(new File(pathDirectoy));

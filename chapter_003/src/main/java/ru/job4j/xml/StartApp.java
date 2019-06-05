@@ -9,41 +9,46 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 05.06.2019
+ */
+
 public class StartApp {
-    public static void main(String[] args) {
-        Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
-        String SR = File.separator;
-        //формируем конфиг
-        Config config = new Config();
-        config.init();
-
-        //генерируем данные в таблице
-        StoreSQL storeSQL = new StoreSQL(config);
-        storeSQL.init();
-        storeSQL.generate(1000000);
-
-        //конвертируем данные из тиблицы в xml
-        File root = new File(System.getProperty("java.io.tmpdir") + SR + "chapter_003_SQL");
-        StoreXML.clearDir(root.getAbsolutePath());
-        root.mkdir();
-        File xml = new File(root + SR + "target.xml");
-        StoreXML storeXML = new StoreXML(xml);
-        storeXML.save(storeSQL.getAllValues());
-        ConvertXSQT convertXSQT = new ConvertXSQT();
-        File xsl = new File(root + SR + "targetConvert.xsl");
-        convertXSQT.convert(xml, xsl);
+    private static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
+    private static final String SR = File.separator;
+    private static final String ROOT_PATH = System.getProperty("java.io.tmpdir") + SR + "chapter_003_SQL";
+    private static final String XML_PATH = ROOT_PATH + SR + "target.xml";
+    private static final String XSL_PATH = ROOT_PATH + SR + "targetConvert.xsl";
+    private ParsingXSL parsingXSL;
+    private StoreSQL storeSQL;
 
 
+    /**
+     * Метод запускает поочердности каждый из методов
+     *
+     * @param size - количество элементов которые будут храниться в БД
+     */
+    public void init(Integer size) {
+        this.processDB(size);
+        this.generatedXML();
+        this.convertXSQT();
+        this.pars();
+    }
+
+    /**
+     * Метод запускает парсер файла типа xsl
+     */
+    private void pars() {
         SAXParserFactory factory = SAXParserFactory.newInstance();
-
         factory.setValidating(true);
         factory.setNamespaceAware(false);
         SAXParser parser;
-
         InputStream xmlData = null;
-        ParsingXSL parsingXSL = new ParsingXSL();
+        parsingXSL = new ParsingXSL();
         try {
-            xmlData = new FileInputStream(xsl.getPath());
+            xmlData = new FileInputStream(XSL_PATH);
             parser = factory.newSAXParser();
             parser.parse(xmlData, parsingXSL);
         } catch (FileNotFoundException e) {
@@ -55,8 +60,49 @@ public class StartApp {
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
         }
+    }
 
-        System.out.println(parsingXSL.getSum());
+    /**
+     * Метод подготоваливает БД для ее дальнейшей работы записав значения в таблицу
+     *
+     * @param size - количество элементов в таблице
+     */
+    private void processDB(Integer size) {
+        this.storeSQL = new StoreSQL(new Config());
+        this.storeSQL.init();
+        this.storeSQL.generate(size);
+    }
 
+    /**
+     * Метод генерирует создает xml файл на основе данных взятых из таблицы
+     */
+    private void generatedXML() {
+        File root = new File(ROOT_PATH);
+        StoreXML.clearDir(root.getAbsolutePath());
+        root.mkdir();
+        StoreXML storeXML = new StoreXML(new File(XML_PATH));
+        storeXML.save(storeSQL.getAllValues());
+    }
+
+    /**
+     * Метод конвертирует файл типа xml в файл типа xsl
+     */
+    private void convertXSQT() {
+        new ConvertXSQT().convert(new File(XML_PATH), new File(XSL_PATH));
+    }
+
+    /**
+     * Метод возвращает сумму всех значений поля name
+     *
+     * @return
+     */
+    public Integer getSumm() {
+        return parsingXSL.getSum();
+    }
+
+    public static void main(String[] args) {
+        StartApp startApp = new StartApp();
+        startApp.init(11);
+        System.out.println(startApp.getSumm());
     }
 }
