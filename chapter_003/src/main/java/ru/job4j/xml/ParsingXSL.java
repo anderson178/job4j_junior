@@ -1,5 +1,7 @@
 package ru.job4j.xml;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -9,9 +11,9 @@ import org.xml.sax.helpers.DefaultHandler;
  * @version $Id$
  * @since 05.06.2019
  */
-
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ParsingXSL extends DefaultHandler {
-    private int sum;
+    int sum;
 
     /**
      * Метод проходит заданный тег и проверяет на наличие заданного тега суммируя значения всех тегов

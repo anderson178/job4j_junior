@@ -1,7 +1,9 @@
 package ru.job4j.xml;
 
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.job4j.xml.models.Field;
@@ -21,8 +23,9 @@ import java.util.List;
  */
 
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class StoreXML {
-    private static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
+    static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
     final File target;
 
     /**

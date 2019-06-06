@@ -1,5 +1,8 @@
 package ru.job4j.xml;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -8,9 +11,9 @@ import java.util.Properties;
  * @version $Id$
  * @since 05.06.2019
  */
-
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Config {
-    private final Properties values = new Properties();
+    final Properties values = new Properties();
 
     /**
      * Метод считывает данные из файла настроек и записывает в переменную настроек

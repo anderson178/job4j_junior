@@ -1,5 +1,7 @@
 package ru.job4j.xml;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,10 +18,10 @@ import java.io.*;
  * @version $Id$
  * @since 05.06.2019
  */
-
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ConvertXSQT {
-    private static final String LS = System.lineSeparator();
-    public static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
+    static final String LS = System.lineSeparator();
+    static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
 
     /**
      * Метод ковенвертирует файл типа xml в файл типа xsl

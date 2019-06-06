@@ -1,5 +1,7 @@
 package ru.job4j.xml;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -14,15 +16,15 @@ import java.io.*;
  * @version $Id$
  * @since 05.06.2019
  */
-
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class StartApp {
-    private static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
-    private static final String SR = File.separator;
-    private static final String ROOT_PATH = System.getProperty("java.io.tmpdir") + SR + "chapter_003_SQL";
-    private static final String XML_PATH = ROOT_PATH + SR + "target.xml";
-    private static final String XSL_PATH = ROOT_PATH + SR + "targetConvert.xsl";
-    private ParsingXSL parsingXSL;
-    private StoreSQL storeSQL;
+    static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
+    static final String SR = File.separator;
+    static final String ROOT_PATH = System.getProperty("java.io.tmpdir") + SR + "chapter_003_SQL";
+    static final String XML_PATH = ROOT_PATH + SR + "target.xml";
+    static final String XSL_PATH = ROOT_PATH + SR + "targetConvert.xsl";
+    ParsingXSL parsingXSL;
+    StoreSQL storeSQL;
 
 
     /**
@@ -102,7 +104,7 @@ public class StartApp {
 
     public static void main(String[] args) {
         StartApp startApp = new StartApp();
-        startApp.init(11);
+        startApp.init(10);
         System.out.println(startApp.getSumm());
     }
 }

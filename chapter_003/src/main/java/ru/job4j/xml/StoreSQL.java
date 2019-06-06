@@ -1,6 +1,8 @@
 package ru.job4j.xml;
 
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.job4j.xml.models.Field;
@@ -15,11 +17,11 @@ import java.util.List;
  * @version $Id$
  * @since 05.06.2019
  */
-
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class StoreSQL {
-    public static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
-    private final Config config;
-    private Connection connection;
+    static final Logger LOG = LoggerFactory.getLogger(StoreSQL.class.getName());
+    final Config config;
+    Connection connection;
 
     public StoreSQL(Config config) {
         this.config = config;
