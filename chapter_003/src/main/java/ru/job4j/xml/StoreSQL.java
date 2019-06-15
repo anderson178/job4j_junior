@@ -11,6 +11,7 @@ import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * @author Денис Мироненко
@@ -80,20 +81,22 @@ public class StoreSQL {
     public void generate(int size) {
         this.createTable();
         this.clearTable();
-        StringBuffer sql = new StringBuffer();
-        sql.append("INSERT INTO entry (name) VALUES ");
-        for (int i = 0; i < size; i++) {
-            if (i < size - 1) {
-                sql.append("('" + i + "'),");
-            } else {
-                sql.append("('" + i + "');");
-            }
-        }
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())) {
-            preparedStatement.execute();
+        String insertQuery = "INSERT INTO entry (name) VALUES (?)";
+        try {
+            connection.setAutoCommit(false);
+            IntStream.range(0,size).forEach(i -> {
+                try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)){
+                    preparedStatement.setString(1, Integer.toString(i));
+                    preparedStatement.executeUpdate();
+                } catch (SQLException e) {
+                    LOG.error(e.getMessage(), e);
+                }
+            });
+            connection.commit();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
+
     }
 
     /**
