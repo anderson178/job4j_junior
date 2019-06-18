@@ -6,12 +6,15 @@ import org.junit.Test;
 import ru.job4j.tracker.*;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Properties;
 import java.util.function.Consumer;
 
 import static org.hamcrest.core.Is.is;
@@ -35,8 +38,22 @@ public class StartUISQLTest {
             System.out.println(s);
         }
     };
-    private TrackerSQL tracker = new TrackerSQL();
+    private TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()));
 
+    public Connection init() {
+        try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("application.properties")) {
+            Properties config = new Properties();
+            config.load(in);
+            Class.forName(config.getProperty("driver-class-name"));
+            return DriverManager.getConnection(
+                    config.getProperty("url"),
+                    config.getProperty("username"),
+                    config.getProperty("password")
+            );
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
     private StringBuilder menu = new StringBuilder("-----------MENU--------" + ln + "0: ADD" + ln
             + "1: SHOW_ALL" + ln + "2: EDIT" + ln + "3: DELETE"

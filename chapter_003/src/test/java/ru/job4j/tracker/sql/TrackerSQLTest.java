@@ -6,11 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.tracker.Item;
 
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.is;
@@ -22,13 +25,32 @@ import static org.hamcrest.Matchers.is;
  */
 
 public class TrackerSQLTest {
-    private TrackerSQL tracker = new TrackerSQL();
+
+
+    private TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()));
+
+
+    public Connection init() {
+        try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("application.properties")) {
+            Properties config = new Properties();
+            config.load(in);
+            Class.forName(config.getProperty("driver-class-name"));
+            return DriverManager.getConnection(
+                    config.getProperty("url"),
+                    config.getProperty("username"),
+                    config.getProperty("password")
+            );
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
 
     @Before
     public void clearDataBase() {
         Connection connection = tracker.getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE  FROM item");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM item");
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,6 +61,8 @@ public class TrackerSQLTest {
     public void checkConnection() {
         assertNotNull(this.tracker.getConnection());
     }
+
+
 
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {

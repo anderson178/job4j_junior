@@ -84,8 +84,8 @@ public class StoreSQL {
         String insertQuery = "INSERT INTO entry (name) VALUES (?)";
         try {
             connection.setAutoCommit(false);
-            IntStream.range(0,size).forEach(i -> {
-                try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)){
+            IntStream.range(0, size).forEach(i -> {
+                try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                     preparedStatement.setString(1, Integer.toString(i));
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
