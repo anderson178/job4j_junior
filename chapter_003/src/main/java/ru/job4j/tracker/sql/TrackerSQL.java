@@ -18,6 +18,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     public static final Logger LOG = LoggerFactory.getLogger(TrackerSQL.class.getName());
     private Connection connection;
 
+    public TrackerSQL(Connection connection) {
+        this.connection = connection;
+    }
+
     /**
      * Статический блок инициализации для подключения к базе данных
      */
