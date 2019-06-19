@@ -55,7 +55,6 @@ public class TrackerSQLTest {
     }
 
 
-
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Item item = new Item("test1", "testDescription");
