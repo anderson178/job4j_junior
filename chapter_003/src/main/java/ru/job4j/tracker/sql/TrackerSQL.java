@@ -22,17 +22,6 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         this.connection = connection;
     }
 
-    /**
-     * Статический блок инициализации для подключения к базе данных
-     */
-//    {
-//        this.init();
-//    }
-
-
-    public TrackerSQL(Connection connection) {
-        this.connection = connection;
-    }
     public TrackerSQL() {
         this.init();
     }
