@@ -1,6 +1,6 @@
 # используем язык java. Travis CI поддерживает другие языки тоже.
 language: java
-jdk: openjdk8
+jdk: openjdk11
 services:
   - postgresql
 before_install:
