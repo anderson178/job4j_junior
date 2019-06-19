@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 14.05.2019
+ * @since 19.05.2019
  */
 
 public class TrackerSQLTest {
