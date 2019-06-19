@@ -29,6 +29,9 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     public TrackerSQL(Connection connection) {
         this.connection = connection;
     }
+    public TrackerSQL() {
+        this.init();
+    }
 
     /**
      * Метод возвращает объект connection
@@ -69,7 +72,6 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public Item add(Item item) {
         String sql = "INSERT INTO item (id, name, description, date) Values (?, ?, ?, ?)";
-
         item.setId(String.valueOf(System.currentTimeMillis() + new Random().nextInt()));
         item.setCreate(new Date().toString());
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

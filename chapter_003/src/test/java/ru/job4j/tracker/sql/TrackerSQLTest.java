@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.tracker.Item;
+import ru.job4j.tracker.Tracker;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -27,7 +28,7 @@ import static org.hamcrest.Matchers.is;
 public class TrackerSQLTest {
 
 
-    private TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()));
+    private TrackerSQL tracker = new TrackerSQL();
 
 
     public Connection init() {
@@ -45,20 +46,11 @@ public class TrackerSQLTest {
         }
     }
 
-
-    @Before
-    public void clearDataBase() {
-        Connection connection = tracker.getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM item");
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Test
     public void checkConnection() {
+        try (Tracker tracker = new Tracker()) {
+
+        }
         assertNotNull(this.tracker.getConnection());
     }
 
