@@ -10,8 +10,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
@@ -31,8 +29,6 @@ public class StartUISQLTest {
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private String ln = System.lineSeparator();
     private final Consumer<String> consumer = new Consumer<String>() {
-        private final PrintStream printStream = new PrintStream(stdout);
-
         @Override
         public void accept(String s) {
             System.out.println(s);

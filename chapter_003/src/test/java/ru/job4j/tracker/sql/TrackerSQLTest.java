@@ -2,16 +2,12 @@ package ru.job4j.tracker.sql;
 
 import org.hamcrest.core.Is;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.tracker.Item;
-import ru.job4j.tracker.Tracker;
 
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -26,10 +22,6 @@ import static org.hamcrest.Matchers.is;
  */
 
 public class TrackerSQLTest {
-
-
-    // private TrackerSQL tracker = new TrackerSQL();
-
 
     public Connection init() {
         try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("application.properties")) {
