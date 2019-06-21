@@ -38,7 +38,7 @@ public class StartUISQLTest {
             System.out.println(s);
         }
     };
-    private TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()));
+
 
     public Connection init() {
         try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("application.properties")) {
