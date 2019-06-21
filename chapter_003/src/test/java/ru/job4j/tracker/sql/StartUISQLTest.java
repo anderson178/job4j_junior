@@ -21,7 +21,7 @@ import static org.junit.Assert.assertThat;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 14.05.2019
+ * @since 21.06.2019
  */
 
 public class StartUISQLTest {

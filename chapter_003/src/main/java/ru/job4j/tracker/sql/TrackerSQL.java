@@ -64,20 +64,21 @@ public class TrackerSQL implements ITracker, AutoCloseable {
      */
     @Override
     public Item add(Item item) {
-        String sql = "INSERT INTO item (id, name, description, date) Values (?, ?, ?, ?)";
-        item.setId(String.valueOf(System.currentTimeMillis() + new Random().nextInt()));
+        String sql = "INSERT INTO item (name, description, date) Values (?, ?, ?)";
         item.setCreate(new Date().toString());
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setLong(1, Long.parseLong(item.getId()));
-            preparedStatement.setString(2, item.getName());
-            preparedStatement.setString(3, item.getDescription());
-            preparedStatement.setString(4, item.getCreate());
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setString(1, item.getName());
+            preparedStatement.setString(2, item.getDescription());
+            preparedStatement.setString(3, item.getCreate());
             preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            if (rs != null && rs.next()) {
+                item.setId(rs.getString(1));
+            }
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
         }
         return item;
-
     }
 
     /**
