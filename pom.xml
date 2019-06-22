@@ -18,6 +18,7 @@
         <module>chapter_002_IO</module>
         <module>stepik</module>
         <module>chapter_003</module>
+        <module>parser_vacancies</module>
     </modules>
     <profiles>
         <profile>
