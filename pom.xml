@@ -19,6 +19,7 @@
         <module>stepik</module>
         <module>chapter_003</module>
         <module>parser_vacancies</module>
+        <module>chapter_004_OOD</module>
     </modules>
     <profiles>
         <profile>
