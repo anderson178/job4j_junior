@@ -33,7 +33,6 @@ public class ListScripts {
     }
 
 
-
     @Override
     public int hashCode() {
         return Objects.hash(listScripts, map, numberScripts);
