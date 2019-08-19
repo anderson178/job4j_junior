@@ -40,6 +40,6 @@ public class StartUICalc {
     }
 
     public static void main(String[] args) {
-        new StartUICalc(new ConsoleInput(), new MenuCalculator()).execute();
+        new StartUICalc(new ConsoleInput(), new MenuEngineer()).execute();
     }
 }

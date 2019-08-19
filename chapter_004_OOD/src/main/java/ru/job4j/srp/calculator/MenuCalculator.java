@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MenuCalculator {
-    List<UserAction> userActions = new ArrayList<>(6);
+    protected List <UserAction> userActions = new ArrayList<>();
     List<Integer> range = new ArrayList<>();
 
     /**
