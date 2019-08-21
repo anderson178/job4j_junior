@@ -1,7 +1,8 @@
-package ru.job4j.srp.calculator;
+package ru.job4j.srp.ordinaryCalc;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import ru.job4j.StartUICalc;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -32,6 +33,10 @@ public class MenuCalculator {
         userActions.add(new Summ(3, "Summ"));
         userActions.add(new Clear(4, "Clear", ui));
         userActions.add(new Exit(5, "Exit", ui));
+    }
+
+    public void menuDialog() {
+
     }
 
     /**
@@ -123,7 +128,7 @@ public class MenuCalculator {
     /**
      * Addition class
      */
-    private class Summ extends BaseAction {
+    protected class Summ extends BaseAction {
 
 
         public Summ(int key, String info) {

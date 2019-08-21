@@ -4,6 +4,10 @@ import org.hamcrest.core.Is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ru.job4j.StartUICalc;
+import ru.job4j.srp.ordinaryCalc.Input;
+import ru.job4j.srp.ordinaryCalc.MenuCalculator;
+import ru.job4j.srp.ordinaryCalc.StabInput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

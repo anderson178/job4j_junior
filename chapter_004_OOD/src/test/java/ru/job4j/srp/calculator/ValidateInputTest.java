@@ -3,6 +3,8 @@ package ru.job4j.srp.calculator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ru.job4j.srp.ordinaryCalc.StabInput;
+import ru.job4j.srp.ordinaryCalc.ValidateInput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
