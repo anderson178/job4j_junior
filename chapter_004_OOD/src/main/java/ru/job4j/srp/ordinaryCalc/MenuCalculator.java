@@ -18,8 +18,9 @@ import java.util.stream.IntStream;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MenuCalculator {
-    protected List <UserAction> userActions = new ArrayList<>();
+    protected List<UserAction> userActions = new ArrayList<>();
     List<Integer> range = new ArrayList<>();
+    private static final double ZERO = 0.0;
 
     /**
      * Fill a user action in the list
@@ -35,9 +36,18 @@ public class MenuCalculator {
         userActions.add(new Exit(5, "Exit", ui));
     }
 
-    public void menuDialog() {
-
-    }
+//    public void menuDialog(Input input, int key, StartUICalc ui) {
+//        if (ui.result.equals(ZERO)) {
+//            ui.result = this.select(key, input.askNumber("Input first number "),
+//                    input.askNumber("Input second number "));
+//            System.out.println(ui.result);
+//        } else {
+//            ui.result = this.select(key, ui.result, input.askNumber("Input second number "));
+//            System.out.println(ui.result);
+//        }
+//
+//
+//    }
 
     /**
      * Fill range in the menu

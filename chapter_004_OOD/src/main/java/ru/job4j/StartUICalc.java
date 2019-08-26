@@ -23,6 +23,20 @@ public class StartUICalc {
     /**
      * Ask input to actions user and execute the actions
      */
+//    public void execute() {
+////        menu.fillActions(this);
+////        do {
+////            this.menu.show();
+////           // this.menu.(input,this);
+////            //int key = input.ask("select: ", menu.fillRange());
+//////            if (key == 4 || key == 5) {
+//////                this.menu.select(key);
+//////            } else {
+//////                menu.menuDialog(input, key, this);
+//////            }
+////        } while (work);
+////    }
+
     public void execute() {
         menu.fillActions(this);
         do {
@@ -42,26 +56,6 @@ public class StartUICalc {
             }
         } while (work);
     }
-
-//    public void execute() {
-//        menu.fillActions(this);
-//        do {
-//            this.menu.show();
-//            int key = input.ask("select: ", menu.fillRange());
-//            if (key == 4 || key == 5) {
-//                this.menu.select(key);
-//            } else {
-//                if (this.result.equals(0.0)) {
-//                    this.result = this.menu.select(key, input.askNumber("Input first number "),
-//                            input.askNumber("Input second number "));
-//                    System.out.println(this.result);
-//                } else {
-//                    this.result = this.menu.select(key, result, input.askNumber("Input second number "));
-//                    System.out.println(this.result);
-//                }
-//            }
-//        } while (work);
-//    }
 
     public static void main(String[] args) {
         new StartUICalc(new ConsoleInput(), new MenuCalculator()).execute();
