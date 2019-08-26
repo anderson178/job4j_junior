@@ -13,7 +13,7 @@ public class MenuEngineer extends MenuCalculator {
     List<Integer> range = new ArrayList<>();
 
     @Override
-    public void fillActions(StartUICalc ui) {
+    public void fillDefaultActions(StartUICalc ui) {
        // super.fillActions(ui);
         this.userActions.add(new Sin(0, "Sin"));
         this.userActions.add(new Cos(1, "Cos"));

@@ -3,6 +3,10 @@ package ru.job4j;
 import ru.job4j.srp.ordinaryCalc.ConsoleInput;
 import ru.job4j.srp.ordinaryCalc.Input;
 import ru.job4j.srp.ordinaryCalc.MenuCalculator;
+import ru.job4j.srp.ordinaryCalc.action.Difference;
+import ru.job4j.srp.ordinaryCalc.action.Divide;
+import ru.job4j.srp.ordinaryCalc.action.Multiply;
+import ru.job4j.srp.ordinaryCalc.action.Summ;
 
 /**
  * @author Денис Мироненко
@@ -20,29 +24,12 @@ public class StartUICalc {
         this.menu = menu;
     }
 
-    /**
-     * Ask input to actions user and execute the actions
-     */
-//    public void execute() {
-////        menu.fillActions(this);
-////        do {
-////            this.menu.show();
-////           // this.menu.(input,this);
-////            //int key = input.ask("select: ", menu.fillRange());
-//////            if (key == 4 || key == 5) {
-//////                this.menu.select(key);
-//////            } else {
-//////                menu.menuDialog(input, key, this);
-//////            }
-////        } while (work);
-////    }
-
     public void execute() {
-        menu.fillActions(this);
+        menu.fillDefaultActions(this);
         do {
             this.menu.show();
             int key = input.ask("select: ", menu.fillRange());
-            if (key == 4 || key == 5) {
+            if (key == menu.getSize() - 2 || key == menu.getSize() - 1) {
                 this.menu.select(key);
             } else {
                 if (this.result.equals(0.0)) {
@@ -54,10 +41,16 @@ public class StartUICalc {
                     System.out.println(this.result);
                 }
             }
+
         } while (work);
     }
 
     public static void main(String[] args) {
-        new StartUICalc(new ConsoleInput(), new MenuCalculator()).execute();
+        MenuCalculator menu = new MenuCalculator();
+        menu.addAction(new Multiply(menu.getSize(), Multiply.class.getSimpleName()));
+        menu.addAction(new Divide(menu.getSize(), Divide.class.getSimpleName()));
+        menu.addAction(new Difference(menu.getSize(), Difference.class.getSimpleName()));
+        menu.addAction(new Summ(menu.getSize(), Summ.class.getSimpleName()));
+        new StartUICalc(new ConsoleInput(), menu).execute();
     }
 }

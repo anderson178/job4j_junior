@@ -4,8 +4,6 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import ru.job4j.StartUICalc;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -22,32 +20,24 @@ public class MenuCalculator {
     List<Integer> range = new ArrayList<>();
     private static final double ZERO = 0.0;
 
+
     /**
      * Fill a user action in the list
      *
      * @param ui
      */
-    public void fillActions(StartUICalc ui) {
-        userActions.add(new Multiply(0, "Multiple"));
-        userActions.add(new Divide(1, "Devide"));
-        userActions.add(new Difference(2, "Difference"));
-        userActions.add(new Summ(3, "Summ"));
-        userActions.add(new Clear(4, "Clear", ui));
-        userActions.add(new Exit(5, "Exit", ui));
+    public void fillDefaultActions(StartUICalc ui) {
+        userActions.add(new Clear(userActions.size(), Clear.class.getSimpleName(), ui));
+        userActions.add(new Exit(userActions.size(), Exit.class.getSimpleName(), ui));
     }
 
-//    public void menuDialog(Input input, int key, StartUICalc ui) {
-//        if (ui.result.equals(ZERO)) {
-//            ui.result = this.select(key, input.askNumber("Input first number "),
-//                    input.askNumber("Input second number "));
-//            System.out.println(ui.result);
-//        } else {
-//            ui.result = this.select(key, ui.result, input.askNumber("Input second number "));
-//            System.out.println(ui.result);
-//        }
-//
-//
-//    }
+    public void addAction(UserAction ua) {
+        userActions.add(ua);
+    }
+
+    public int getSize() {
+        return this.userActions.size();
+    }
 
     /**
      * Fill range in the menu
@@ -90,67 +80,6 @@ public class MenuCalculator {
         System.out.println("-----------------------");
     }
 
-    /**
-     * Multiplication class
-     */
-    private class Multiply extends BaseAction {
-
-        public Multiply(int key, String info) {
-            super(key, info);
-        }
-
-        @Override
-        public double execute(double one, double two) {
-            return new BigDecimal(one * two).setScale(3, RoundingMode.UP).doubleValue();
-        }
-    }
-
-    /**
-     * Division class
-     */
-    private class Divide extends BaseAction {
-
-        public Divide(int key, String info) {
-            super(key, info);
-        }
-
-        @Override
-        public double execute(double one, double two) {
-            return new BigDecimal(one / two).setScale(3, RoundingMode.UP).doubleValue();
-        }
-    }
-
-    /**
-     * Difference class
-     */
-    private class Difference extends BaseAction {
-
-        public Difference(int key, String info) {
-            super(key, info);
-        }
-
-        @Override
-        public double execute(double one, double two) {
-            return new BigDecimal(one - two).setScale(3, RoundingMode.UP).doubleValue();
-        }
-    }
-
-    /**
-     * Addition class
-     */
-    protected class Summ extends BaseAction {
-
-
-        public Summ(int key, String info) {
-            super(key, info);
-        }
-
-        @Override
-        public double execute(double one, double two) {
-            return new BigDecimal(one + two).setScale(3, RoundingMode.UP).doubleValue();
-
-        }
-    }
 
     /**
      * Clear class
