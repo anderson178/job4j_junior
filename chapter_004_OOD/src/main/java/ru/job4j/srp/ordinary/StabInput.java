@@ -1,4 +1,4 @@
-package ru.job4j.srp.ordinaryCalc;
+package ru.job4j.srp.ordinary;
 
 import java.util.List;
 

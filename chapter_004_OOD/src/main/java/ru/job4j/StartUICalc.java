@@ -1,12 +1,9 @@
 package ru.job4j;
 
-import ru.job4j.srp.ordinaryCalc.ConsoleInput;
-import ru.job4j.srp.ordinaryCalc.Input;
-import ru.job4j.srp.ordinaryCalc.MenuCalculator;
-import ru.job4j.srp.ordinaryCalc.action.Difference;
-import ru.job4j.srp.ordinaryCalc.action.Divide;
-import ru.job4j.srp.ordinaryCalc.action.Multiply;
-import ru.job4j.srp.ordinaryCalc.action.Summ;
+import ru.job4j.ocp.engineer.MenuEngineer;
+import ru.job4j.srp.ordinary.ConsoleInput;
+import ru.job4j.srp.ordinary.Input;
+import ru.job4j.srp.ordinary.MenuCalculator;
 
 /**
  * @author Денис Мироненко
@@ -25,32 +22,19 @@ public class StartUICalc {
     }
 
     public void execute() {
+        menu.fillAction();
         menu.fillDefaultActions(this);
         do {
-            this.menu.show();
+            menu.show();
             int key = input.ask("select: ", menu.fillRange());
-            if (key == menu.getSize() - 2 || key == menu.getSize() - 1) {
-                this.menu.select(key);
-            } else {
-                if (this.result.equals(0.0)) {
-                    this.result = this.menu.select(key, input.askNumber("Input first number "),
-                            input.askNumber("Input second number "));
-                    System.out.println(this.result);
-                } else {
-                    this.result = this.menu.select(key, result, input.askNumber("Input second number "));
-                    System.out.println(this.result);
-                }
+            this.result = menu.select(key, input, this);
+            if (key != menu.getSize() - 1 && key != menu.getSize() - 2) {
+                System.out.println(result);
             }
-
         } while (work);
     }
 
     public static void main(String[] args) {
-        MenuCalculator menu = new MenuCalculator();
-        menu.addAction(new Multiply(menu.getSize(), Multiply.class.getSimpleName()));
-        menu.addAction(new Divide(menu.getSize(), Divide.class.getSimpleName()));
-        menu.addAction(new Difference(menu.getSize(), Difference.class.getSimpleName()));
-        menu.addAction(new Summ(menu.getSize(), Summ.class.getSimpleName()));
-        new StartUICalc(new ConsoleInput(), menu).execute();
+        new StartUICalc(new ConsoleInput(), new MenuEngineer()).execute();
     }
 }

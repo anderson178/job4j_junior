@@ -1,18 +1,15 @@
-package ru.job4j.srp.ordinaryCalc;
+package ru.job4j.srp.ordinary;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author Денис Мироненко
  * @version $Id$
  * @since 14.08.2019
  */
-public class ValidateInput implements Input {
-    private final Input input;
-
-    public ValidateInput(Input input) {
-        this.input = input;
-    }
+public class ConsoleInput implements Input {
+    private Scanner scaner = new Scanner(System.in);
 
     /**
      * Write input action console line
@@ -22,7 +19,8 @@ public class ValidateInput implements Input {
      */
     @Override
     public String ask(String question) {
-        return null;
+        System.out.println(question);
+        return scaner.nextLine();
     }
 
     /**
@@ -31,9 +29,8 @@ public class ValidateInput implements Input {
      * @param question
      * @return -input number from console line
      */
-    @Override
     public Double askNumber(String question) {
-        return 0.0;
+        return Double.valueOf(this.ask(question));
     }
 
     /**
@@ -45,19 +42,21 @@ public class ValidateInput implements Input {
      */
     @Override
     public int ask(String question, List<Integer> range) {
-        boolean invalide = true;
-        int value = -1;
-        do {
-            try {
-                value = this.input.ask(question, range);
-                invalide = false;
-            } catch (ArrayIndexOutOfBoundsException indexOfEx) {
-                System.out.println("Enter number menu  of range");
-            } catch (NumberFormatException nfe) {
-                System.out.println("Please enter validate data again");
+        int key = Integer.valueOf(this.ask(question));
+        boolean result = false;
+        for (int value : range) {
+            if (value == key) {
+                result = true;
+                break;
             }
         }
-        while (invalide);
-        return value;
+        if (!result) {
+            throw new ArrayIndexOutOfBoundsException("out of menu range");
+
+        } else {
+            return key;
+        }
     }
+
+
 }

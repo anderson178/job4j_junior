@@ -1,8 +1,12 @@
-package ru.job4j.srp.ordinaryCalc;
+package ru.job4j.srp.ordinary;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import ru.job4j.StartUICalc;
+import ru.job4j.srp.ordinary.action.Difference;
+import ru.job4j.srp.ordinary.action.Divide;
+import ru.job4j.srp.ordinary.action.Multiply;
+import ru.job4j.srp.ordinary.action.Summ;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,24 +22,24 @@ import java.util.stream.IntStream;
 public class MenuCalculator {
     protected List<UserAction> userActions = new ArrayList<>();
     List<Integer> range = new ArrayList<>();
-    private static final double ZERO = 0.0;
 
-
-    /**
-     * Fill a user action in the list
-     *
-     * @param ui
-     */
     public void fillDefaultActions(StartUICalc ui) {
         userActions.add(new Clear(userActions.size(), Clear.class.getSimpleName(), ui));
         userActions.add(new Exit(userActions.size(), Exit.class.getSimpleName(), ui));
     }
 
-    public void addAction(UserAction ua) {
-        userActions.add(ua);
+    public void fillAction() {
+        this.userActions.add(new Multiply(this.userActions.size(), Multiply.class.getSimpleName()));
+        this.userActions.add(new Divide(this.userActions.size(), Divide.class.getSimpleName()));
+        this.userActions.add(new Difference(this.userActions.size(), Difference.class.getSimpleName()));
+        this.userActions.add(new Summ(this.userActions.size(), Summ.class.getSimpleName()));
     }
 
-    public int getSize() {
+    protected void addAction(UserAction ua) {
+        this.userActions.add(ua);
+    }
+
+    public  int getSize() {
         return this.userActions.size();
     }
 
@@ -57,18 +61,10 @@ public class MenuCalculator {
      * @param second - second number
      * @return - result the action
      */
-    public double select(int key, double first, double second) {
-        return this.userActions.get(key).execute(first, second);
+    public double select(int key, Input input, StartUICalc ui) {
+        return this.userActions.get(key).execute(input, ui);
     }
 
-    /**
-     * Call action  the necessary action (for clean and exit)
-     *
-     * @param key - key
-     */
-    public void select(int key) {
-        this.userActions.get(key).execute();
-    }
 
     /**
      * Print of the menu
@@ -93,12 +89,9 @@ public class MenuCalculator {
         }
 
         @Override
-        public double execute(double one, double two) {
-            return 0.0;
-        }
-
-        public void execute() {
-            this.ui.result = 0.0;
+        public double execute(Input input, StartUICalc ui) {
+            ui.result = 0.0;
+            return ui.result;
         }
     }
 
@@ -114,12 +107,13 @@ public class MenuCalculator {
         }
 
         @Override
-        public double execute(double one, double two) {
+        public double execute(Input input, StartUICalc ui) {
+            ui.work = false;
             return 0.0;
         }
 
-        public void execute() {
-            this.ui.work = false;
-        }
+//        public void execute() {
+//            this.ui.work = false;
+//        }
     }
 }

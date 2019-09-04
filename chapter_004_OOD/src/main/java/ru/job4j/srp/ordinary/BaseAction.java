@@ -1,4 +1,4 @@
-package ru.job4j.srp.ordinaryCalc;
+package ru.job4j.srp.ordinary;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -40,9 +40,9 @@ public abstract class BaseAction implements UserAction {
     /**
      * Method execute action. Is empty
      */
-    @Override
-    public void execute() {
-    }
+//    @Override
+//    public void execute() {
+//    }
 
 
 }
