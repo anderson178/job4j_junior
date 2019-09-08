@@ -35,7 +35,6 @@ public class StartUICalc {
     }
 
     public static void main(String[] args) {
-        //fgfgf
         new StartUICalc(new ConsoleInput(), new MenuEngineer()).execute();
     }
 }
