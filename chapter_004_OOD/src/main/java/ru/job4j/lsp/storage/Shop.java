@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Shop implements BaseStorage {
+public class Shop implements Storage {
     private List<Food> foodList = new ArrayList<>();
     @Override
     public void add(Food food) {
