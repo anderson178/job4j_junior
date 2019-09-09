@@ -9,6 +9,6 @@ public class ShowTrash extends BaseAction {
 
     @Override
     public void execute(UIStorageFood ui) {
-        ui.getTrash().show();
+        //ui.getTrash().show();
     }
 }
