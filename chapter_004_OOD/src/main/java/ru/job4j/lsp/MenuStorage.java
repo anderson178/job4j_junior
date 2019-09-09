@@ -43,7 +43,7 @@ public class MenuStorage {
 
         @Override
         public void execute(UIStorageFood ui) {
-            ui.work = false;
+            ui.setWork(false);
         }
     }
 

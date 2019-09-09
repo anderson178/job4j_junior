@@ -20,4 +20,8 @@ public class Trash implements Storage {
                 -> System.out.println(i + ":" + " " + this.foodList.get(i)));
         System.out.println("-----------------------");
     }
+    @Override
+    public String getName() {
+        return this.getClass().getSimpleName();
+    }
 }

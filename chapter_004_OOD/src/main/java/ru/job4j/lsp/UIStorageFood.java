@@ -7,27 +7,35 @@ import ru.job4j.lsp.storage.Storage;
 import ru.job4j.lsp.storage.Trash;
 import ru.job4j.lsp.storage.Warehouse;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 
 public class UIStorageFood {
-    public boolean work = true;
+    private boolean work = true;
     private final MenuStorage menu;
     private final InputInterface input;
-    private List<Storage> storages = new ArrayList<>(Arrays.asList(new Shop(), new Trash(), new Warehouse()));
-//    private Storage shop = new Shop();
-//    private Storage trash = new Trash();
-//    private Storage warehouse = new Warehouse();
+   // private List<Storage> storages = new ArrayList<>(Arrays.asList(new Shop(), new Trash(), new Warehouse()));
+    private Storage shop = new Shop();
+    private Storage trash = new Trash();
+    private Storage warehouse = new Warehouse();
+
+    public void setWork(boolean work) {
+        this.work = work;
+    }
 
     public UIStorageFood(MenuStorage menu, InputInterface input) {
         this.menu = menu;
         this.input = input;
     }
 
-    public List<Storage> getStorages() {
-        return storages;
+    public Storage getShop() {
+        return shop;
+    }
+
+    public Storage getTrash() {
+        return trash;
+    }
+
+    public Storage getWarehouse() {
+        return warehouse;
     }
 
     public void execute() {

@@ -9,6 +9,6 @@ public class ShowShop extends BaseAction {
 
     @Override
     public void execute(UIStorageFood ui) {
-        //ui.getShop().show();
+        ui.getShop().show();
     }
 }
