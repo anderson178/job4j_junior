@@ -12,12 +12,11 @@ public class UIStorageFood {
     private boolean work = true;
     private final MenuStorage menu;
     private final InputInterface input;
-   // private List<Storage> storages = new ArrayList<>(Arrays.asList(new Shop(), new Trash(), new Warehouse()));
     private Storage shop = new Shop();
     private Storage trash = new Trash();
     private Storage warehouse = new Warehouse();
 
-    public void setWork(boolean work) {
+    void setWork(boolean work) {
         this.work = work;
     }
 
@@ -43,7 +42,7 @@ public class UIStorageFood {
         do {
             menu.show();
             int key = input.ask("Input action ", menu.fillRange());
-            menu.select(key,this);
+            menu.select(key, this);
         } while (this.work);
 
 

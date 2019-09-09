@@ -9,9 +9,9 @@ public class ControllQuality {
         if (food.getCreateDate() < 25) {
             addFood(ui.getWarehouse(), food);
 
-        } else if (food.getCreateDate() >= 25 && food.getCreateDate() <=75) {
+        } else if (food.getCreateDate() >= 25 && food.getCreateDate() <= 75) {
             addFood(ui.getShop(), food);
-        } else if (food.getCreateDate() > 75){
+        } else if (food.getCreateDate() > 75) {
             food.setDisscount(10);
             addFood(ui.getShop(), food);
         } else {

@@ -11,10 +11,10 @@ public class AddFood extends BaseAction {
 
     @Override
     public void execute(UIStorageFood ui) {
-        Food food = new Food("apple", "11",12,13);
-        Food food1 = new Food("pc", "11",45,22);
-        Food food2 = new Food("mango", "11",80,33);
-        Food food3 = new Food("pasta", "11",74,73);
+        Food food = new Food("apple", "11", 12, 13);
+        Food food1 = new Food("pc", "11", 45, 22);
+        Food food2 = new Food("mango", "11", 80, 33);
+        Food food3 = new Food("pasta", "11", 74, 73);
         ControllQuality.distribute(food, ui);
         ControllQuality.distribute(food1, ui);
         ControllQuality.distribute(food2, ui);
