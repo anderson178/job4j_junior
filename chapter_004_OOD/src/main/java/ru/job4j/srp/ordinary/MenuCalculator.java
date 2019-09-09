@@ -3,10 +3,6 @@ package ru.job4j.srp.ordinary;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import ru.job4j.StartUICalc;
-import ru.job4j.srp.ordinary.action.Difference;
-import ru.job4j.srp.ordinary.action.Divide;
-import ru.job4j.srp.ordinary.action.Multiply;
-import ru.job4j.srp.ordinary.action.Summ;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +24,7 @@ public class MenuCalculator {
         userActions.add(new Exit(userActions.size(), Exit.class.getSimpleName(), ui));
     }
 
-    public void fillAction() {
-        this.userActions.add(new Multiply(this.userActions.size(), Multiply.class.getSimpleName()));
-        this.userActions.add(new Divide(this.userActions.size(), Divide.class.getSimpleName()));
-        this.userActions.add(new Difference(this.userActions.size(), Difference.class.getSimpleName()));
-        this.userActions.add(new Summ(this.userActions.size(), Summ.class.getSimpleName()));
-    }
-
-    protected void addAction(UserAction ua) {
+    public void addAction(UserAction ua) {
         this.userActions.add(ua);
     }
 

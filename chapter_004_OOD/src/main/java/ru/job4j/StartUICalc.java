@@ -1,6 +1,7 @@
 package ru.job4j;
 
 import ru.job4j.ocp.engineer.MenuEngineer;
+import ru.job4j.ocp.engineer.action.Sin;
 import ru.job4j.srp.ordinary.ConsoleInput;
 import ru.job4j.srp.ordinary.Input;
 import ru.job4j.srp.ordinary.MenuCalculator;
@@ -22,7 +23,6 @@ public class StartUICalc {
     }
 
     public void execute() {
-        menu.fillAction();
         menu.fillDefaultActions(this);
         do {
             menu.show();
@@ -35,6 +35,8 @@ public class StartUICalc {
     }
 
     public static void main(String[] args) {
-        new StartUICalc(new ConsoleInput(), new MenuEngineer()).execute();
+        MenuCalculator menu = new MenuEngineer();
+        menu.addAction(new Sin(menu.getSize(), Sin.class.getSimpleName()));
+        new StartUICalc(new ConsoleInput(), menu).execute();
     }
 }

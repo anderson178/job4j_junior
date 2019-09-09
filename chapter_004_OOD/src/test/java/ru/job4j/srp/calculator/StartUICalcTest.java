@@ -8,6 +8,10 @@ import ru.job4j.StartUICalc;
 import ru.job4j.srp.ordinary.Input;
 import ru.job4j.srp.ordinary.MenuCalculator;
 import ru.job4j.srp.ordinary.StabInput;
+import ru.job4j.srp.ordinary.action.Difference;
+import ru.job4j.srp.ordinary.action.Divide;
+import ru.job4j.srp.ordinary.action.Multiply;
+import ru.job4j.srp.ordinary.action.Summ;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -34,6 +38,15 @@ public class StartUICalcTest {
     @Before
     public void loadOutput() {
         System.setOut(new PrintStream(this.out));
+
+    }
+
+    @Before
+    public void fillMenu() {
+        this.menu.addAction(new Multiply(this.menu.getSize(), Multiply.class.getSimpleName()));
+        this.menu.addAction(new Divide(menu.getSize(), Divide.class.getSimpleName()));
+        this.menu.addAction(new Difference(this.menu.getSize(), Difference.class.getSimpleName()));
+        this.menu.addAction(new Summ(this.menu.getSize(), Summ.class.getSimpleName()));
     }
 
     @After
