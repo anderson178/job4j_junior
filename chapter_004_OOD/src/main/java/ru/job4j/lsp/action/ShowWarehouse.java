@@ -9,6 +9,6 @@ public class ShowWarehouse extends BaseAction {
 
     @Override
     public void execute(UIStorageFood ui) {
-        System.out.println(this.getClass().getSimpleName() + " ==== hi");
+        ui.getWarehouse().show();
     }
 }

@@ -4,6 +4,6 @@ import ru.job4j.lsp.model.Food;
 
 public interface BaseStorage {
     void add(Food food);
-    void showFood();
+    void show();
 
 }

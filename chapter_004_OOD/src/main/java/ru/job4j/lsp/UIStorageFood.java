@@ -2,16 +2,34 @@ package ru.job4j.lsp;
 
 import ru.job4j.lsp.input.ConsoleInput;
 import ru.job4j.lsp.input.InputInterface;
+import ru.job4j.lsp.storage.Shop;
+import ru.job4j.lsp.storage.Trash;
+import ru.job4j.lsp.storage.Warehouse;
 
 
 public class UIStorageFood {
     public boolean work = true;
     private final MenuStorage menu;
     private final InputInterface input;
+    private Shop shop = new Shop();
+    private Trash trash = new Trash();
+    private Warehouse warehouse = new Warehouse();
 
     public UIStorageFood(MenuStorage menu, InputInterface input) {
         this.menu = menu;
         this.input = input;
+    }
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public Trash getTrash() {
+        return trash;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
     }
 
     public void execute() {
