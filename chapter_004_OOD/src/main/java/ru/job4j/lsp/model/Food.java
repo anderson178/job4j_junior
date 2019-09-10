@@ -1,7 +1,6 @@
 package ru.job4j.lsp.model;
 
 import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -11,9 +10,8 @@ import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @ToString
-@EqualsAndHashCode
 public class Food {
-    String id;
+    long id;
     final String name;
     final Date expiryDate;
     final Date createDate;
@@ -31,7 +29,7 @@ public class Food {
         this.disscount = disscount;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

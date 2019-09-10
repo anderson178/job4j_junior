@@ -8,21 +8,27 @@ import java.util.stream.IntStream;
 
 public class Warehouse implements Storage {
     private List<Food> foodList = new ArrayList<>();
+
     @Override
     public void add(Food food) {
         this.foodList.add(food);
     }
 
     @Override
-    public void show() {
-        System.out.println("-----------MENU--------");
-        IntStream.range(0, this.foodList.size()).forEach(i
-                -> System.out.println(i + ":" + " " + this.foodList.get(i)));
-        System.out.println("-----------------------");
+    public boolean accept(Food food) {
+        int percent = Calculate.calculatePercent(food.getCreateDate(), food.getExpiryDate());
+        return percent < 25;
     }
 
     @Override
-    public String getName() {
-        return this.getClass().getSimpleName();
+    public void show() {
+        IntStream.range(0, this.foodList.size()).forEach(i
+                -> System.out.println(getClass().getSimpleName() + " " + i + ":" + " " + this.foodList.get(i)));
     }
+
+    @Override
+    public List<Food> getFoods() {
+        return foodList;
+    }
+
 }

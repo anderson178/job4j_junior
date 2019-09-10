@@ -1,22 +1,18 @@
-package ru.job4j.lsp.storage;
+package ru.job4j.lsp.expansion;
 
 import ru.job4j.lsp.model.Food;
+import ru.job4j.lsp.storage.Warehouse;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Trash implements Storage {
+public class WarehouseAdditional extends Warehouse {
     private List<Food> foodList = new ArrayList<>();
+
     @Override
     public void add(Food food) {
         this.foodList.add(food);
-    }
-
-    @Override
-    public boolean accept(Food food) {
-        return food.getExpiryDate().before(new Date(System.currentTimeMillis()));
     }
 
     @Override
@@ -27,7 +23,6 @@ public class Trash implements Storage {
 
     @Override
     public List<Food> getFoods() {
-        return foodList;
+        return this.foodList;
     }
-
 }
