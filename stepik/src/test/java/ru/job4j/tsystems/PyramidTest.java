@@ -8,6 +8,12 @@ import java.util.Arrays;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 10.09.2019
+ */
 public class PyramidTest {
 
     @Test
@@ -43,5 +49,11 @@ public class PyramidTest {
 
         };
         assertThat(new Pyramid().build(new ArrayList<>(Arrays.asList(4, 5, 6, 3, 9, 1, 2, 8, 7, 10))), is(expect));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenImpossibleBuildTriangle() {
+        new Pyramid().build(new ArrayList<>(Arrays.asList(4, 5, 6, 3, 9, 1, 2, 8, 7, 10, 11)));
+
     }
 }

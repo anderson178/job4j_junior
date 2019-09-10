@@ -1,20 +1,36 @@
 package ru.job4j.tsystems;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 10.09.2019
+ */
 public class Pyramid {
     private final static String LN = System.lineSeparator();
 
+    /**
+     * The method build a triangle of numbers in a matrix
+     *
+     * @param list
+     * @return
+     */
     public int[][] build(List<Integer> list) {
         Collections.sort(list);
-        int rows = this.calcRow(list);
-        int[][] mas = new int[this.calcRow(list)][this.calcColumn(rows)];
+        int rows = this.calcRows(list);
+        int[][] mas = new int[this.calcRows(list)][this.calcColumns(rows)];
         return this.fillMatrix(mas, list);
     }
 
+    /**
+     * Method for fill the matrix
+     *
+     * @param mas  - input array
+     * @param list - input a list with numbers
+     * @return - fill array
+     */
     private int[][] fillMatrix(int[][] mas, List<Integer> list) {
         int indent = 0;
         int index = list.size() - 1;
@@ -33,16 +49,27 @@ public class Pyramid {
         return mas;
     }
 
-
-    private int calcColumn(int row) {
+    /**
+     * Method to calculate count a columns of the matrix
+     *
+     * @param rows - count rows
+     * @return
+     */
+    private int calcColumns(int rows) {
         int column = 1;
-        for (int i = 0; i < row - 1; i++) {
+        for (int i = 0; i < rows - 1; i++) {
             column = column + 2;
         }
         return column;
     }
 
-    private int calcRow(List<Integer> list) {
+    /**
+     * Method to calculate count a rows of the matrix
+     *
+     * @param list - input list with numbers
+     * @return - count rows
+     */
+    private int calcRows(List<Integer> list) {
         int size = list.size();
         int rows = 1;
         int count = 0;
@@ -51,17 +78,8 @@ public class Pyramid {
             rows++;
         }
         if (size != count) {
-            //TODO throw
-            System.out.println("no");
-            int p = 0;
+            throw new IllegalArgumentException("Impossible to build a triangle");
         }
         return rows - 1;
-    }
-
-
-    public static void main(String[] args) {
-        int[][] p = new Pyramid().build(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)));
-        int sd = 0;
-
     }
 }
