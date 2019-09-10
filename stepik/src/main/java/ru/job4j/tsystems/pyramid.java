@@ -9,8 +9,8 @@ public class pyramid {
 
     public void build(List<Integer> list) {
         Collections.sort(list);
-        int column = this.calcHeight(list);
-        int row = this.calcWeight(column);
+        int row = this.calcHeight(list);
+        int column = this.calcWeight(row);
         int[][] array = new int[row][column];
 
         int p = 0;
@@ -20,7 +20,6 @@ public class pyramid {
         int weight = 1;
         for (int i = 0; i < height - 1; i++) {
             weight = weight + 2;
-
         }
         return weight;
     }
@@ -42,6 +41,8 @@ public class pyramid {
 
 
     public static void main(String[] args) {
+        new pyramid().build(new ArrayList<>(Arrays.asList(1, 2, 3)));
+        new pyramid().build(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         new pyramid().build(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
 //         new pyramid().build(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)));
 
