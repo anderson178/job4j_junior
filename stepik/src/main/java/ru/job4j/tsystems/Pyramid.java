@@ -56,11 +56,11 @@ public class Pyramid {
      * @return
      */
     private int calcColumns(int rows) {
-        int column = 1;
+        int columns = 1;
         for (int i = 0; i < rows - 1; i++) {
-            column = column + 2;
+            columns = columns + 2;
         }
-        return column;
+        return columns;
     }
 
     /**
