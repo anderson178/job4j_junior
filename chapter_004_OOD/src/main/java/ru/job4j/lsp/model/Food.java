@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @ToString
@@ -13,14 +15,14 @@ import lombok.experimental.FieldDefaults;
 public class Food {
     String id;
     final String name;
-    final String expaireDate;
-    final int createDate;
+    final Date expiryDate;
+    final Date createDate;
     final int price;
     int disscount;
 
-    public Food(String name, String expaireDate, int createDate, int price) {
+    public Food(String name, Date expiryDate, Date createDate, int price) {
         this.name = name;
-        this.expaireDate = expaireDate;
+        this.expiryDate = expiryDate;
         this.createDate = createDate;
         this.price = price;
     }
