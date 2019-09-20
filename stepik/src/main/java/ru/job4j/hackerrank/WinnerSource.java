@@ -14,7 +14,7 @@ public class WinnerSource {
 //        System.out.println(erica);
 //        System.out.println(bob);
 
-        return calcSource(erica) > calcSource(bob) ? erica:bob;
+        return calcSource(erica) > calcSource(bob) ? erica : bob;
         // Write your code here
 
     }
@@ -24,11 +24,11 @@ public class WinnerSource {
         char[] temp = line.toCharArray();
         for (char symbol : temp) {
             if (symbol == 'E') {
-                rst = rst+1;
+                rst = rst + 1;
             } else if (symbol == 'M') {
-                rst = rst +3;
+                rst = rst + 3;
             } else if (symbol == 'H') {
-                rst = rst +5;
+                rst = rst + 5;
             }
         }
         return rst;
@@ -39,15 +39,15 @@ public class WinnerSource {
         for (int i = 1; i < a.size(); i++) {
             rst = rst + a.get(i);
         }
-        int r = a.get(0) /rst;
+        int r = a.get(0) / rst;
         return r;
         // Write your code here
 
     }
 
     public static void main(String[] args) {
-        fountainActivation(new ArrayList<>(Arrays.asList(3,1,1,1)));
+        fountainActivation(new ArrayList<>(Arrays.asList(3, 1, 1, 1)));
         String tt = WinnerSource.winner("EMH", "EHH");
-        int p=0;
+        int p = 0;
     }
 }
