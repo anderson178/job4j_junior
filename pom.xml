@@ -20,6 +20,7 @@
         <module>chapter_003</module>
         <module>parser_vacancies</module>
         <module>chapter_004_OOD</module>
+        <module>Hibernate</module>
     </modules>
     <profiles>
         <profile>
@@ -99,6 +100,11 @@
         <artifactId>mockito-core</artifactId>
         <version>1.9.5</version>
         <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.8</version>
     </dependency>
 </dependencies>
     <build>
