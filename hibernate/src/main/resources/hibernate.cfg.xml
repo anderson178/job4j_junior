@@ -9,6 +9,7 @@
         <property name="show_sql">true</property>
 
         <mapping class="ru.job4j.model.City"/>
+        <mapping class="ru.job4j.model.Employee"/>
         <!--<mapping resource="ru/job4j/model/City.hbm.xml"/>-->
 
 
