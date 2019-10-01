@@ -27,6 +27,6 @@ public class Employee {
     private String patronymic;
 
     @ManyToOne
-    @JoinColumn(name="city_id",referencedColumnName="id")
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
     private City city;
 }

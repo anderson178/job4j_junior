@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 public class Main {
     public static void main(String[] args) {
         SessionFactory factory = null;
-        try  {
+        try {
             Configuration configuration = new Configuration().configure();
             factory = new Configuration().configure().buildSessionFactory();
 //            CityDAO cityDAO = new CityDAO(factory);
@@ -28,7 +28,7 @@ public class Main {
                 factory.close();
             }
         }
-        Predicate<Integer> pred = x-> x>3;
+        Predicate<Integer> pred = x -> x > 3;
         pred.test(10);
 
     }
