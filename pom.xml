@@ -21,6 +21,7 @@
         <module>parser_vacancies</module>
         <module>chapter_004_OOD</module>
         <module>Hibernate</module>
+        <module>multithread</module>
     </modules>
     <profiles>
         <profile>
